@@ -1,8 +1,8 @@
 package com.company;
 
 public class Main {
-    private final int PLAYFIELDSIZE = 6;
-    private final int MAX_DEPTH = 5;
+    private final int PLAYFIELDSIZE = 8;
+    private final int MAX_DEPTH = 4;
     private final Play play = new Play ( MAX_DEPTH,PLAYFIELDSIZE );
     private boolean isEnded = false;
 
@@ -20,10 +20,13 @@ public class Main {
          */
         //m.testScore7 ();
         //m.testScore8 ();
-        m.testScore9 ();
+        //m.testScore9 ();
         //m.testScoreAIChoice10 ();
         //m.testScoreAIChoice11 ();
         //m.testComAi1 ();
+
+
+        //m.testScoreVS2();
         //m.play ();
     }
 
@@ -270,5 +273,23 @@ public class Main {
         System.out.println ( (System.currentTimeMillis () - start) + "ms" );
         int i = b.score ();
         System.out.println ( i );
+    }
+
+    private void testScoreVS2(){
+        Board b = play.getBoard ();
+        Score2 score2 = new Score2 ( b );
+        play.addPosition ( 2,1,Node.Brick.HUMAN );
+        play.addPosition ( 2,2,Node.Brick.HUMAN );
+        play.addPosition ( 2,3,Node.Brick.HUMAN );
+        //play.addPosition ( 2,4,Node.Brick.HUMAN );
+        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
+        play.addPosition ( 4,2,Node.Brick.COMPUTER );
+        play.addPosition ( 4,3,Node.Brick.COMPUTER );
+        play.addPosition ( 4,4,Node.Brick.COMPUTER );
+        play.printBoard ();
+
+        long start = System.currentTimeMillis ();
+        int i = score2.getScore ();
+        System.out.println ( (System.currentTimeMillis () - start) + "ms" +"  Score2:"+i );
     }
 }
