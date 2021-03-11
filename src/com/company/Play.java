@@ -75,7 +75,7 @@ public class Play {
             return -calcWinScore () / depth;
         }
         if (depth == maxDepth) {
-            return board.score (); // depth;
+            return board.score ()/depth; // depth;
         }
         List<Coordinate> possiblePlays = board.possiblePlaysLimited ();
         Coordinate chosenPlay = null;
