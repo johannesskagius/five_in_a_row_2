@@ -53,8 +53,6 @@ public class Play {
         }
     }
 
-
-
     public void addPosition (int x,int y,Node.Brick s) {
         board.addPlay ( x,y,s );
     }
@@ -75,7 +73,7 @@ public class Play {
             return -calcWinScore () / depth;
         }
         if (depth == maxDepth) {
-            return board.score ()/depth; // depth;
+            return board.score ()/depth;
         }
         List<Coordinate> possiblePlays = board.possiblePlaysLimited ();
         Coordinate chosenPlay = null;
@@ -89,7 +87,7 @@ public class Play {
             }
             board.removePlay ( pos.getX (),pos.getY () );
             //printBoard (Node.Brick.NOTPLAYED.value );
-            // Stop looping through moves if alfa is greater or equal to beta. Parent node is not going to be chosen anyways (Alpha-beta pruning)
+            // Stop looping through moves if alfa is greater or equal to beta.
             if (alfa >= beta) {
                 break;
             }

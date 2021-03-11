@@ -1,7 +1,7 @@
 package com.company;
 
 public class Main {
-    private final int PLAYFIELDSIZE = 8;
+    private final int PLAYFIELDSIZE = 6;
     private final int MAX_DEPTH = 5;
     private Play play = new Play ( MAX_DEPTH, PLAYFIELDSIZE );
     private boolean isEnded = false;

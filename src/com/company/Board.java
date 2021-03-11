@@ -284,10 +284,12 @@ public class Board implements Rules {
 
     private int getScore (String player) {
         int score = 1;
+        int count;
+
         for (int y = 0; y < PLAYFIELDSIZE; y++) {
             for (int x = 0; x < PLAYFIELDSIZE; x++) {
                 int nextInRow = x;
-                int count = 1;
+                count = 1;
                 //Checks the row to the right
                 while (playField[y][nextInRow].getStatus ().equals ( player )) {
                     score *= count;

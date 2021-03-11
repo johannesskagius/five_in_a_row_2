@@ -12,7 +12,7 @@ public class Node {
     }
 
     public enum Brick{
-        HUMAN ("P"),
+        HUMAN ("H"),
         COMPUTER("C"),
         NOTPLAYED("-"),
         THISNODE("*");
