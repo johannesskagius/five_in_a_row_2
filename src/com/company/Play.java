@@ -89,7 +89,7 @@ public class Play {
             }
             board.removePlay ( pos.getX (),pos.getY () );
             //printBoard (Node.Brick.NOTPLAYED.value );
-            // Stop looping through moves if alpha is greater or equal to beta. Parent node is not going to be chosen anyways (Alpha-beta pruning)
+            // Stop looping through moves if alfa is greater or equal to beta. Parent node is not going to be chosen anyways (Alpha-beta pruning)
             if (alfa >= beta) {
                 break;
             }
