@@ -23,6 +23,11 @@ public class Play {
         board.printBoard ();
     }
 
+    public void printBoard (String s) {
+        System.out.println (s);
+        board.printBoard ();
+    }
+
     public boolean makeATurn (Coordinate move,Node.Brick player) {
         board.addPlay ( move.getX (),move.getY (),player );
         findComputerMove ();
@@ -63,19 +68,19 @@ public class Play {
         Coordinate chosenPlay = null;
         for (Coordinate pos : possiblePlays) {
             board.addPlay ( pos.getX (),pos.getY (),Node.Brick.COMPUTER );
+            printBoard (Node.Brick.COMPUTER.value);
             int score = playerMove ( depth + 1,alfa,beta );
-            printBoard ();
             board.removePlay ( pos.getX (),pos.getY () );
             if (score < beta) {
                 beta = score;
                 chosenPlay = pos;
             }
-            if (beta >= alfa) {
+            if (alfa >= beta) {
                 break;
             }
         }
         computerMove = chosenPlay;
-        return alfa;
+        return beta;
     }
 
     private int playerMove (int depth,int alfa,int beta) {
@@ -92,15 +97,15 @@ public class Play {
         List<Coordinate> possiblePlays = board.possiblePlaysLimited ();
         for (Coordinate pos : possiblePlays) {
             board.addPlay ( pos.getX (), pos.getY (),Node.Brick.HUMAN );
-            printBoard ();
+            printBoard (Node.Brick.NOTPLAYED.value );
             int score = computerMove ( depth + 1,alfa,beta );
             board.removePlay ( pos.getX (),pos.getY () );
-
-            if (score < alfa) {
+            printBoard (Node.Brick.NOTPLAYED.value );
+            if (score > alfa) {
                 alfa = score;
                 chosenPlay = pos;
             }
-            if (beta >= alfa) {
+            if (alfa >= beta) {
                 break;
             }
         }

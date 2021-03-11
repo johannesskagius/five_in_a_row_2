@@ -302,6 +302,7 @@ public class Board implements Rules {
                 }
                 int nextInColumn = y;
                 count = 1;
+                //Check straight down
                 while (playField[nextInColumn][x].getStatus ().equals ( player )) {
                     score *= count;
                     nextInColumn++;
@@ -329,7 +330,7 @@ public class Board implements Rules {
 
                 int nextPositionInRow = y;
                 int nextPositionInColumn = x;
-                //Checks the node down to the left
+                //Checks the node down to the right
                 while (playField[nextPositionInRow][nextPositionInColumn].getStatus ().equals ( player )) {
                     score *= count;
                     nextPositionInRow++;
@@ -359,6 +360,7 @@ public class Board implements Rules {
 
                 int behindInRow = y;
                 int behindInColumn = x;
+                //Check down to left
                 while (playField[behindInRow][behindInColumn].getStatus ().equals ( player )) {
                     score *= count;
                     behindInColumn--;
@@ -367,12 +369,13 @@ public class Board implements Rules {
                         boolean before = false;
                         boolean after = false;
                         //check if the node to above of start is free if it's add extra score!
-                        if (y > 0 && x > 0 && playField[y+1][x+1].getStatus ().equals ( Node.Brick.NOTPLAYED.value )) {
+                        System.out.println ("y:"+y);
+                        if (y < PLAYFIELDSIZE && x > 0 && playField[y+1][x-1].getStatus ().equals ( Node.Brick.NOTPLAYED.value )) {
                             score += 50 * count;
                             before = true;
                         }
                         //Check the node below
-                        if (behindInColumn > 0  && behindInColumn > 0 && playField[behindInRow][behindInColumn].getStatus().equals ( Node.Brick.NOTPLAYED.value )) {
+                        if (behindInRow < PLAYFIELDSIZE && behindInColumn > 0 && playField[behindInRow][behindInColumn].getStatus ().equals ( Node.Brick.NOTPLAYED.value )) {
                             score += 50 * count;
                             after = true;
                         }

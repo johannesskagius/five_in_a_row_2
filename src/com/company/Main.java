@@ -1,13 +1,14 @@
 package com.company;
 
 public class Main {
-    private Play play = new Play ( 2, 5 );
+    private Play play = new Play ( 4, 5 );
     private boolean isEnded = false;
 
     public static void main (String[] args) {
         Main m = new Main ();
       //  m.testScore ();
-        m.testScore2 ();
+       // m.testScore2 ();
+        m.testComAi1 ();
         //m.play ();
     }
 
@@ -56,6 +57,21 @@ public class Main {
         play.addPosition ( 2, 1, Node.Brick.COMPUTER  );
         play.addPosition ( 3, 1, Node.Brick.COMPUTER  );
         b.printBoard ();
+        int i = b.score ();
+        System.out.println (i);
+    }
+
+    private void testComAi1 () {
+        Board b = play.getBoard ();
+        int x = 1;
+        play.addPosition ( 2, 2, Node.Brick.HUMAN );
+        play.addPosition ( 2, 3, Node.Brick.HUMAN );
+        play.addPosition ( 2, 4, Node.Brick.HUMAN );
+        // play.addPosition ( 1, 1, Node.Brick.COMPUTER  );
+        play.addPosition ( 1, 1, Node.Brick.COMPUTER  );
+        play.addPosition ( 3, 1, Node.Brick.COMPUTER  );
+        b.printBoard ();
+        play.findComputerMove ();
         int i = b.score ();
         System.out.println (i);
     }
