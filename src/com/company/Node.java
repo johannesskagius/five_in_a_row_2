@@ -7,15 +7,24 @@ public class Node {
         status = s;
     }
 
+    public String getStatus () {
+        return status.toString ();
+    }
+
     public void setStatus (Brick status) {
         this.status = status;
     }
 
-    public enum Brick{
-        HUMAN ("H"),
-        COMPUTER("C"),
-        NOTPLAYED("-"),
-        THISNODE("*");
+    @Override
+    public String toString () {
+        return "|" + status + "|";
+    }
+
+    public enum Brick {
+        HUMAN ( "H" ),
+        COMPUTER ( "C" ),
+        NOTPLAYED ( "-" ),
+        THISNODE ( "*" );
 
         String value;
 
@@ -27,14 +36,5 @@ public class Node {
         public String toString () {
             return value;
         }
-    }
-
-    public String getStatus () {
-        return status.toString ();
-    }
-
-    @Override
-    public String toString () {
-        return "|"+status+"|";
     }
 }

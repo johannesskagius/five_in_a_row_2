@@ -36,7 +36,7 @@ public class Board implements Rules {
         for (int y = 0; y < PLAYFIELDSIZE; y++) {
             for (int x = 0; x < PLAYFIELDSIZE; x++) {
                 if (playField[y][x].getStatus ().equals ( NOTPLAYED )) {
-                    possiblePlays.add ( new Coordinate ( y, x ) );
+                    possiblePlays.add ( new Coordinate ( y,x ) );
                 }
             }
         }
@@ -302,15 +302,15 @@ public class Board implements Rules {
                             score += 50 * count;
                             before = true;
                         }
-                        if (nextInRow < PLAYFIELDSIZE && playField[y][nextInRow].getStatus().equals ( Node.Brick.NOTPLAYED.value )) {
+                        if (nextInRow < PLAYFIELDSIZE && playField[y][nextInRow].getStatus ().equals ( Node.Brick.NOTPLAYED.value )) {
                             score += 50 * count;
                             after = true;
                         }
-                        if(before && after && count == 3){
+                        if (before && after && count == 3) {
                             score = 10000;
                         }
                     }
-                    count ++;
+                    count++;
                     if (!(nextInRow < PLAYFIELDSIZE)) break;
                 }
                 int nextInColumn = y;
@@ -323,20 +323,20 @@ public class Board implements Rules {
                         boolean before = false;
                         boolean after = false;
                         //check if the node to above of start is free if it's add extra score!
-                        if (y > 0 && playField[y-1][x].getStatus ().equals ( Node.Brick.NOTPLAYED.value )) {
+                        if (y > 0 && playField[y - 1][x].getStatus ().equals ( Node.Brick.NOTPLAYED.value )) {
                             score += 50 * count;
                             before = true;
                         }
                         //Check the node below
-                        if (nextInColumn < PLAYFIELDSIZE && playField[nextInColumn][x].getStatus().equals ( Node.Brick.NOTPLAYED.value )) {
+                        if (nextInColumn < PLAYFIELDSIZE && playField[nextInColumn][x].getStatus ().equals ( Node.Brick.NOTPLAYED.value )) {
                             score += 50 * count;
                             after = true;
                         }
-                        if(before && after && count == 3){
+                        if (before && after && count == 3) {
                             score = 10000;
                         }
                     }
-                    count ++;
+                    count++;
                     if (!(nextInColumn < PLAYFIELDSIZE)) break;
                 }
                 count = 1;
@@ -352,20 +352,20 @@ public class Board implements Rules {
                         boolean before = false;
                         boolean after = false;
                         //check if the node to above of start is free if it's add extra score!
-                        if (y > 0 && x < PLAYFIELDSIZE && playField[y-1][x+1].getStatus ().equals ( Node.Brick.NOTPLAYED.value )) {
+                        if (y > 0 && x < PLAYFIELDSIZE && playField[y - 1][x + 1].getStatus ().equals ( Node.Brick.NOTPLAYED.value )) {
                             score += 50 * count;
                             before = true;
                         }
                         //Check the down to the right after streak
-                        if (nextPositionInRow < PLAYFIELDSIZE  && nextPositionInColumn < PLAYFIELDSIZE && playField[nextPositionInRow][nextPositionInColumn].getStatus().equals ( Node.Brick.NOTPLAYED.value )) {
+                        if (nextPositionInRow < PLAYFIELDSIZE && nextPositionInColumn < PLAYFIELDSIZE && playField[nextPositionInRow][nextPositionInColumn].getStatus ().equals ( Node.Brick.NOTPLAYED.value )) {
                             score += 50 * count;
                             after = true;
                         }
-                        if(before && after && count == 3){
+                        if (before && after && count == 3) {
                             score = 10000;
                         }
                     }
-                    count ++;
+                    count++;
                     if (!(nextPositionInColumn < PLAYFIELDSIZE) || !(nextPositionInRow < PLAYFIELDSIZE))
                         break;
                 }
@@ -382,7 +382,7 @@ public class Board implements Rules {
                         boolean before = false;
                         boolean after = false;
                         //check if the node to above of start is free if it's add extra score!
-                        if (y < PLAYFIELDSIZE && x > 0 && playField[y+1][x-1].getStatus ().equals ( Node.Brick.NOTPLAYED.value )) {
+                        if (y < PLAYFIELDSIZE && x > 0 && playField[y + 1][x - 1].getStatus ().equals ( Node.Brick.NOTPLAYED.value )) {
                             score += 50 * count;
                             before = true;
                         }
@@ -391,11 +391,11 @@ public class Board implements Rules {
                             score += 50 * count;
                             after = true;
                         }
-                        if(before && after && count == 3){
+                        if (before && after && count == 3) {
                             score = 10000;
                         }
                     }
-                    count ++;
+                    count++;
 
                     if (!(behindInColumn > 0) || !(behindInRow < PLAYFIELDSIZE))
                         break;

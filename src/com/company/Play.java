@@ -5,12 +5,11 @@ import java.util.List;
 public class Play {
     private static final int ALPHA_START_VALUE = Integer.MIN_VALUE;
     private static final int BETA_START_VALUE = Integer.MAX_VALUE;
-    private Board board;
-    private int maxDepth;
+    private final Board board;
+    private final int maxDepth;
+    private final int alfa;
+    private final int beta;
     private Coordinate computerMove;
-    private int alfa;
-    private int beta;
-
 
     public Play (int maxDepth,int playFieldSize) {
         this.maxDepth = maxDepth;
@@ -24,20 +23,21 @@ public class Play {
     }
 
     public void printBoard (String s) {
-        System.out.println (s);
+        System.out.println ( s );
         board.printBoard ();
     }
 
     public boolean makeATurn (Coordinate move,Node.Brick player) {
-        board.addPlay ( move.getY (), move.getX (), player );
+        board.addPlay ( move.getY (),move.getX (),player );
         printBoard ();
         findComputerMove ();
         return board.isGameOver ();
     }
+
     public void findComputerMove () {
         int i = computerMove ( 1,alfa,beta );
-        if(computerMove == null){
-            findASpot();
+        if (computerMove == null) {
+            findASpot ();
         }
         board.addPlay ( computerMove.getX (),computerMove.getY (),Node.Brick.COMPUTER );
     }
@@ -48,7 +48,7 @@ public class Play {
         int y = board.getPLAYFIELDSIZE () / FINDMIDDLE;
 
         Coordinate z = new Coordinate ( y,x );
-        if(board.getPositionValue ( z ).equals ( Node.Brick.NOTPLAYED.value )){
+        if (board.getPositionValue ( z ).equals ( Node.Brick.NOTPLAYED.value )) {
             computerMove = z;
         }
     }
@@ -61,7 +61,7 @@ public class Play {
         return board.score ();
     }
 
-    public Board getBoard(){
+    public Board getBoard () {
         return board;
     }
 
@@ -73,7 +73,7 @@ public class Play {
             return -calcWinScore () / depth;
         }
         if (depth == maxDepth) {
-            return board.score ()/depth;
+            return board.score () / depth;
         }
         List<Coordinate> possiblePlays = board.possiblePlaysLimited ();
         Coordinate chosenPlay = null;
@@ -109,7 +109,7 @@ public class Play {
         Coordinate chosenPlay = null;
         List<Coordinate> possiblePlays = board.possiblePlaysLimited ();
         for (Coordinate pos : possiblePlays) {
-            board.addPlay ( pos.getX (), pos.getY (),Node.Brick.HUMAN );
+            board.addPlay ( pos.getX (),pos.getY (),Node.Brick.HUMAN );
             //printBoard (Node.Brick.NOTPLAYED.value );
             int score = computerMove ( depth + 1,alfa,beta );
             if (score < beta) {
@@ -117,7 +117,7 @@ public class Play {
                 chosenPlay = pos;
             }
             board.removePlay ( pos.getX (),pos.getY () );
- //           printBoard (Node.Brick.NOTPLAYED.value );
+            //           printBoard (Node.Brick.NOTPLAYED.value );
             if (alfa >= beta) {
                 break;
             }
