@@ -23,15 +23,11 @@ public class Node {
     public enum Brick {
         HUMAN ( "H" ),
         COMPUTER ( "C" ),
-        NOTPLAYED ( "-" ),
-        THISNODE ( "*" );
-
+        NOTPLAYED ( "-" );
         String value;
-
         Brick (String s) {
             value = s;
         }
-
         @Override
         public String toString () {
             return value;
