@@ -20,11 +20,11 @@ public class Main {
          */
         //m.testScore7 ();
         //m.testScore8 ();
-        //m.testScore9 ();
+        m.testScore9 ();
         //m.testScoreAIChoice10 ();
         //m.testScoreAIChoice11 ();
         //m.testComAi1 ();
-        m.play ();
+        //m.play ();
     }
 
 
@@ -170,10 +170,10 @@ public class Main {
         play.addPosition ( 3,1,Node.Brick.COMPUTER );
         b.hasPlayerWon ( Node.Brick.HUMAN.value );
         long start = System.currentTimeMillis ();
-        // play.findComputerMove ();
+        play.findComputerMove ();
         System.out.println ( (System.currentTimeMillis () - start) + "ms" );
         b.printBoard ();
-        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.COMPUTER.value ) );
+        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
     }
 
     /**

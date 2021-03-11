@@ -17,7 +17,7 @@ public class Score {
         inARowToWin = b.getROW_TO_WIN ();
     }
 
-    public int getScore(String player){
+    public int getScore (String player) {
         int score = 1;
         int count;
 
@@ -26,140 +26,119 @@ public class Score {
                 int nextInRow = x;
                 count = 1;
                 //Checks the row to the right
-                score = getScoreToTheRight ( player,score,count,playField[y],x > 0 && playField[y][x - 1].getStatus ().equals ( Node.Brick.NOTPLAYED.value ),nextInRow );
+                while (playField[y][nextInRow].getStatus ().equals ( player )) {
+                    score *= count;
+                    nextInRow++;
+                    if (count > 1) {
+                        boolean before = false;
+                        boolean after = false;
+                        //check if the node to the left of start is free if it's add extra score!
+                        if (x > 0 && playField[y][x - 1].getStatus ().equals ( Node.Brick.NOTPLAYED.value )) {
+                            score += 50 * count;
+                            before = true;
+                        }
+                        if (nextInRow < boardRowSize && playField[y][nextInRow].getStatus ().equals ( Node.Brick.NOTPLAYED.value )) {
+                            score += 50 * count;
+                            after = true;
+                        }
+                        if (before && after && count == 3) {
+                            score = 10000;
+                        }
+                    }
+                    count++;
+                    if (!(nextInRow < boardRowSize)) break;
+                }
                 int nextInColumn = y;
                 count = 1;
                 //Check straight down
-                score = getScoreDown ( player,score,count,y > 0 && playField[y - 1][x].getStatus ().equals ( Node.Brick.NOTPLAYED.value ),x,nextInColumn );
+                while (playField[nextInColumn][x].getStatus ().equals ( player )) {
+                    score *= count;
+                    nextInColumn++;
+                    if (count > 1) {
+                        boolean before = false;
+                        boolean after = false;
+                        //check if the node to above of start is free if it's add extra score!
+                        if (y > 0 && playField[y - 1][x].getStatus ().equals ( Node.Brick.NOTPLAYED.value )) {
+                            score += 50 * count;
+                            before = true;
+                        }
+                        //Check the node below
+                        if (nextInColumn < boardRowSize && playField[nextInColumn][x].getStatus ().equals ( Node.Brick.NOTPLAYED.value )) {
+                            score += 50 * count;
+                            after = true;
+                        }
+                        if (before && after && count == 3) {
+                            score = 10000;
+                        }
+                    }
+                    count++;
+                    if (!(nextInColumn < boardRowSize)) break;
+                }
                 count = 1;
 
                 int nextPositionInRow = y;
                 int nextPositionInColumn = x;
                 //Checks the node down to the right
-                score = getScoreRightDown ( player,score,count,y > 0 && x < boardRowSize && playField[y - 1][x + 1].getStatus ().equals ( Node.Brick.NOTPLAYED.value ),nextPositionInRow,nextPositionInColumn );
+                while (playField[nextPositionInRow][nextPositionInColumn].getStatus ().equals ( player )) {
+                    score *= count;
+                    nextPositionInRow++;
+                    nextPositionInColumn++;
+                    if (count > 1) {
+                        boolean before = false;
+                        boolean after = false;
+                        //check if the node to above of start is free if it's add extra score!
+                        if (y > 0 && x < boardRowSize && playField[y - 1][x + 1].getStatus ().equals ( Node.Brick.NOTPLAYED.value )) {
+                            score += 50 * count;
+                            before = true;
+                        }
+                        //Check the down to the right after streak
+                        if (nextPositionInRow < boardRowSize && nextPositionInColumn < boardRowSize && playField[nextPositionInRow][nextPositionInColumn].getStatus ().equals ( Node.Brick.NOTPLAYED.value )) {
+                            score += 50 * count;
+                            after = true;
+                        }
+                        if (before && after && count == 3) {
+                            score = 10000;
+                        }
+                    }
+                    count++;
+                    if (!(nextPositionInColumn < boardRowSize) || !(nextPositionInRow < boardRowSize))
+                        break;
+                }
                 count = 1;
 
                 int behindInRow = y;
                 int behindInColumn = x;
                 //Check down to left
-                score = getScoreLeftDown ( player,score,count,y < boardRowSize && x > 0 && playField[y + 1][x - 1].getStatus ().equals ( Node.Brick.NOTPLAYED.value ),behindInRow,behindInColumn );
+                while (playField[behindInRow][behindInColumn].getStatus ().equals ( player )) {
+                    score *= count;
+                    behindInColumn--;
+                    behindInRow++;
+                    if (count > 1) {
+                        boolean before = false;
+                        boolean after = false;
+                        //check if the node to above of start is free if it's add extra score!
+                        if (y < boardRowSize && x > 0 && playField[y + 1][x - 1].getStatus ().equals ( Node.Brick.NOTPLAYED.value )) {
+                            score += 50 * count;
+                            before = true;
+                        }
+                        //Check the node below
+                        if (behindInRow < boardRowSize && behindInColumn > 0 && playField[behindInRow][behindInColumn].getStatus ().equals ( Node.Brick.NOTPLAYED.value )) {
+                            score += 50 * count;
+                            after = true;
+                        }
+                        if (before && after && count == 3) {
+                            score = 10000;
+                        }
+                    }
+                    count++;
+
+                    if (!(behindInColumn > 0) || !(behindInRow < boardRowSize))
+                        break;
+                }
             }
         }
         return score;
     }
-
-    private int getScoreLeftDown (String player,int score,int count,boolean b1,int behindInRow,int behindInColumn) {
-        while (playField[behindInRow][behindInColumn].getStatus ().equals ( player )) {
-            score *= count;
-            behindInColumn--;
-            behindInRow++;
-            if (count > 1) {
-                boolean before = false;
-                boolean after = false;
-                //check if the node to above of start is free if it's add extra score!
-                if (b1) {
-                    score += 50 * count;
-                    before = true;
-                }
-                //Check the node below
-                if (behindInRow < boardRowSize && behindInColumn > 0 && playField[behindInRow][behindInColumn].getStatus ().equals ( Node.Brick.NOTPLAYED.value )) {
-                    score += 50 * count;
-                    after = true;
-                }
-                if(before && after && count == 3){
-                    score = 10000;
-                }
-            }
-            count ++;
-
-            if (!(behindInColumn > 0) || !(behindInRow < boardRowSize))
-                break;
-        }
-        return score;
-    }
-
-    private int getScoreRightDown (String player,int score,int count,boolean b1,int nextPositionInRow,int nextPositionInColumn) {
-        while (playField[nextPositionInRow][nextPositionInColumn].getStatus ().equals ( player )) {
-            score *= count;
-            nextPositionInRow++;
-            nextPositionInColumn++;
-            if (count > 1) {
-                boolean before = false;
-                boolean after = false;
-                //check if the node to above of start is free if it's add extra score!
-                if (b1) {
-                    score += 50 * count;
-                    before = true;
-                }
-                //Check the down to the right after streak
-                if (nextPositionInRow < boardRowSize  && nextPositionInColumn < boardRowSize && playField[nextPositionInRow][nextPositionInColumn].getStatus().equals ( Node.Brick.NOTPLAYED.value )) {
-                    score += 50 * count;
-                    after = true;
-                }
-                if(before && after && count == 3){
-                    score = 10000;
-                }
-            }
-            count ++;
-            if (!(nextPositionInColumn < boardRowSize) || !(nextPositionInRow < boardRowSize))
-                break;
-        }
-        return score;
-    }
-
-    private int getScoreDown (String player,int score,int count,boolean b1,int x,int nextInColumn) {
-        while (playField[nextInColumn][x].getStatus ().equals ( player )) {
-            score *= count;
-            nextInColumn++;
-            if (count > 1) {
-                boolean before = false;
-                boolean after = false;
-                //check if the node to above of start is free if it's add extra score!
-                if (b1) {
-                    score += 50 * count;
-                    before = true;
-                }
-                //Check the node below
-                if (nextInColumn < boardRowSize && playField[nextInColumn][x].getStatus().equals ( Node.Brick.NOTPLAYED.value )) {
-                    score += 50 * count;
-                    after = true;
-                }
-                if(before && after && count == 3){
-                    score = 10000;
-                }
-            }
-            count ++;
-            if (!(nextInColumn < boardRowSize)) break;
-        }
-        return score;
-    }
-
-    private int getScoreToTheRight (String player,int score,int count,Node[] nodes,boolean b1,int nextInRow) {
-        while (nodes[nextInRow].getStatus ().equals ( player )) {
-            score *= count;
-            nextInRow++;
-            if (count > 1) {
-                boolean before = false;
-                boolean after = false;
-                //check if the node to the left of start is free if it's add extra score!
-                if (b1) {
-                    score += 50 * count;
-                    before = true;
-                }
-                if (nextInRow < boardRowSize && nodes[nextInRow].getStatus().equals ( Node.Brick.NOTPLAYED.value )) {
-                    score += 50 * count;
-                    after = true;
-                }
-                if(before && after && count == 3){
-                    score = 10000;
-                }
-            }
-            count ++;
-            if (!(nextInRow < boardRowSize)) break;
-        }
-        return score;
-    }
-
 
     /*private int calculateScore(List<Coordinate> inARow, Coordinate before, Coordinate after) {
         int score = 0;

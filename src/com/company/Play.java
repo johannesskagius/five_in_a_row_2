@@ -13,9 +13,9 @@ public class Play {
 
     public Play (int maxDepth,int playFieldSize) {
         this.maxDepth = maxDepth;
-        board = new Board ( playFieldSize );
         alfa = ALPHA_START_VALUE;
         beta = BETA_START_VALUE;
+        board = new Board ( playFieldSize );
     }
 
     public void printBoard () {
