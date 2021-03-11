@@ -1,7 +1,9 @@
 package com.company;
 
 public class Main {
-    private Play play = new Play ( 3, 6 );
+    private final int PLAYFIELDSIZE = 6;
+    private final int MAX_DEPTH = 5;
+    private Play play = new Play ( MAX_DEPTH, PLAYFIELDSIZE );
     private boolean isEnded = false;
 
     public static void main (String[] args) {
@@ -18,9 +20,11 @@ public class Main {
          */
         //m.testScore7 ();
         //m.testScore8 ();
-        m.testScoreAIChoice9 ();
+        //m.testScore9 ();
+        //m.testScoreAIChoice10 ();
+        //m.testScoreAIChoice11 ();
         //m.testComAi1 ();
-        //m.play ();
+        m.play ();
     }
 
 
@@ -29,16 +33,23 @@ public class Main {
         Scan s = new Scan ();
         while (true) {
             play.printBoard ();
-            System.out.print ( "X: " );
-            int x = s.getInt ();
-            System.out.print ( "Y: " );
-            int y = s.getInt ();
+            int x = getChoice ( s,"X: " );
+            int y = getChoice ( s,"Y: " );
             Coordinate move = new Coordinate ( x,y );
             long start = System.currentTimeMillis ();
             isEnded = play.makeATurn ( move,Node.Brick.HUMAN );
             System.out.println ( (System.currentTimeMillis () - start) + "ms" );
            // play.printBoard ();
         }
+    }
+
+    private int getChoice (Scan s,String s2) {
+        int choice;
+        do {
+            System.out.print ( s2 );
+            choice = s.getInt ();
+        }while (!(0 <= choice && choice < PLAYFIELDSIZE));
+        return choice;
     }
 
     private void testScore(){
@@ -192,7 +203,30 @@ public class Main {
      * for 6*6
      * equal playing field gives the same score!
      */
-    private void testScoreAIChoice9 () {
+    private void testScore9 () {
+        Board b = play.getBoard ();
+        play.addPosition ( 2, 1, Node.Brick.HUMAN );
+        play.addPosition ( 2, 2, Node.Brick.HUMAN );
+        play.addPosition ( 2, 3, Node.Brick.HUMAN );
+        play.addPosition ( 2, 4, Node.Brick.HUMAN );
+        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
+        play.addPosition ( 4, 2, Node.Brick.COMPUTER  );
+        play.addPosition ( 4, 3, Node.Brick.COMPUTER  );
+        play.addPosition ( 4, 4, Node.Brick.COMPUTER  );
+        //play.addPosition ( 4, 1, Node.Brick.COMPUTER  );
+        b.hasPlayerWon ( Node.Brick.HUMAN.value );
+        long start = System.currentTimeMillis ();
+        // play.findComputerMove ();
+        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+        b.printBoard ();
+        System.out.println (b.score () +" "+ b.hasPlayerWon ( Node.Brick.HUMAN.value ));
+    }
+
+    /**
+     * for 6*6
+     * equal playing field gives the same score!
+     */
+    private void testScoreAIChoice10 () {
         Board b = play.getBoard ();
         play.addPosition ( 2, 2, Node.Brick.HUMAN );
         play.addPosition ( 2, 3, Node.Brick.HUMAN );
@@ -201,6 +235,21 @@ public class Main {
         play.addPosition ( 4, 2, Node.Brick.COMPUTER  );
         play.addPosition ( 4, 3, Node.Brick.COMPUTER  );
         play.addPosition ( 4, 4, Node.Brick.COMPUTER  );
+        b.hasPlayerWon ( Node.Brick.HUMAN.value );
+        long start = System.currentTimeMillis ();
+        play.findComputerMove ();
+        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+        b.printBoard ();
+        System.out.println (b.score () +" "+ b.hasPlayerWon ( Node.Brick.COMPUTER.value ));
+    }
+
+    private void testScoreAIChoice11 () {
+        Board b = play.getBoard ();
+        play.addPosition ( 2, 2, Node.Brick.HUMAN );
+        play.addPosition ( 2, 3, Node.Brick.HUMAN );
+        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
+        play.addPosition ( 4, 2, Node.Brick.COMPUTER  );
+        play.addPosition ( 4, 3, Node.Brick.COMPUTER  );
         b.hasPlayerWon ( Node.Brick.HUMAN.value );
         long start = System.currentTimeMillis ();
         play.findComputerMove ();

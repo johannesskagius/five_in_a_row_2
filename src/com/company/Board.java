@@ -29,6 +29,20 @@ public class Board implements Rules {
         playedPositions.remove ( l );
     }
 
+    protected ArrayList<Coordinate> getAllPossiblePlays () {
+        final String NOTPLAYED = Node.Brick.NOTPLAYED.value;
+        ArrayList<Coordinate> possiblePlays = new ArrayList<> ();
+        Coordinate i;
+        for (int y = 0; y < PLAYFIELDSIZE; y++) {
+            for (int x = 0; x < PLAYFIELDSIZE; x++) {
+                if (playField[y][x].getStatus ().equals ( NOTPLAYED )) {
+                    possiblePlays.add ( new Coordinate ( y, x ) );
+                }
+            }
+        }
+        return possiblePlays;
+    }
+
     protected ArrayList<Coordinate> possiblePlaysLimited () {
         final String NOTPLAYED = Node.Brick.NOTPLAYED.value;
         ArrayList<Coordinate> possiblePlays = new ArrayList<> ();
@@ -265,7 +279,7 @@ public class Board implements Rules {
     public int score () {
         int human = getScore ( Node.Brick.HUMAN.value );
         int computer = getScore ( Node.Brick.COMPUTER.value );
-        return human - computer;//score.getScore ();
+        return computer - human;//score.getScore ();
     }
 
     private int getScore (String player) {
