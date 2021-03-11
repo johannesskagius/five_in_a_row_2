@@ -1,3 +1,6 @@
+/**
+ * author josk3261 Johannes Skagius
+ */
 package com.company;
 
 import java.util.ArrayList;

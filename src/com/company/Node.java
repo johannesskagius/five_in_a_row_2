@@ -1,3 +1,7 @@
+/**
+ * author josk3261 Johannes Skagius
+ */
+
 package com.company;
 
 public class Node {
