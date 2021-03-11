@@ -68,14 +68,14 @@ public class Play {
         Coordinate chosenPlay = null;
         for (Coordinate pos : possiblePlays) {
             board.addPlay ( pos.getX (),pos.getY (),Node.Brick.COMPUTER );
-            printBoard (Node.Brick.COMPUTER.value);
+            // printBoard (Node.Brick.COMPUTER.value);
             int score = playerMove ( depth + 1,alfa,beta );
             if (score > alfa) {
                 alfa = score;
                 chosenPlay = pos;
             }
             board.removePlay ( pos.getX (),pos.getY () );
-            printBoard (Node.Brick.NOTPLAYED.value );
+            //printBoard (Node.Brick.NOTPLAYED.value );
             // Stop looping through moves if alpha is greater or equal to beta. Parent node is not going to be chosen anyways (Alpha-beta pruning)
             if (alfa >= beta) {
                 break;
@@ -99,7 +99,7 @@ public class Play {
         List<Coordinate> possiblePlays = board.possiblePlaysLimited ();
         for (Coordinate pos : possiblePlays) {
             board.addPlay ( pos.getX (), pos.getY (),Node.Brick.HUMAN );
-            printBoard (Node.Brick.NOTPLAYED.value );
+            //printBoard (Node.Brick.NOTPLAYED.value );
             int score = computerMove ( depth + 1,alfa,beta );
             if (score < beta) {
                 beta = score;

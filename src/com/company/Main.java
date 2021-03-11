@@ -1,7 +1,7 @@
 package com.company;
 
 public class Main {
-    private Play play = new Play ( 5, 4 );
+    private Play play = new Play ( 10, 4 );
     private boolean isEnded = false;
 
     public static void main (String[] args) {
