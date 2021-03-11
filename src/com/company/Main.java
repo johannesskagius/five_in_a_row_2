@@ -1,7 +1,7 @@
 package com.company;
 
 public class Main {
-    private Play play = new Play ( 10, 4 );
+    private Play play = new Play ( 3, 6 );
     private boolean isEnded = false;
 
     public static void main (String[] args) {
@@ -12,10 +12,15 @@ public class Main {
                 // test for 4*4
         //m.testScore4 ();
         //m.testScore5 ();
-        //m.testScore6 ();    //Working test the T
+        //m.testScore6 ();    //Working test the T fungerar för 4*4
+        /**
+         * Tests for 6*6
+         */
         //m.testScore7 ();
+        //m.testScore8 ();
+        m.testScoreAIChoice9 ();
         //m.testComAi1 ();
-        m.play ();
+        //m.play ();
     }
 
 
@@ -154,6 +159,48 @@ public class Main {
         play.addPosition ( 1, 1, Node.Brick.COMPUTER  );
         play.addPosition ( 2, 1, Node.Brick.COMPUTER  );
         play.addPosition ( 3, 1, Node.Brick.COMPUTER  );
+        b.hasPlayerWon ( Node.Brick.HUMAN.value );
+        long start = System.currentTimeMillis ();
+       // play.findComputerMove ();
+        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+        b.printBoard ();
+        System.out.println (b.score () +" "+ b.hasPlayerWon ( Node.Brick.COMPUTER.value ));
+    }
+
+    /**
+     * for 6*6
+     * equal playing field gives the same score!
+     */
+    private void testScore8 () {
+        Board b = play.getBoard ();
+        play.addPosition ( 2, 2, Node.Brick.HUMAN );
+        play.addPosition ( 2, 3, Node.Brick.HUMAN );
+        play.addPosition ( 2, 4, Node.Brick.HUMAN );
+        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
+        play.addPosition ( 4, 2, Node.Brick.COMPUTER  );
+        play.addPosition ( 4, 3, Node.Brick.COMPUTER  );
+        play.addPosition ( 4, 4, Node.Brick.COMPUTER  );
+        b.hasPlayerWon ( Node.Brick.HUMAN.value );
+        long start = System.currentTimeMillis ();
+        // play.findComputerMove ();
+        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+        b.printBoard ();
+        System.out.println (b.score () +" "+ b.hasPlayerWon ( Node.Brick.COMPUTER.value ));
+    }
+
+    /**
+     * for 6*6
+     * equal playing field gives the same score!
+     */
+    private void testScoreAIChoice9 () {
+        Board b = play.getBoard ();
+        play.addPosition ( 2, 2, Node.Brick.HUMAN );
+        play.addPosition ( 2, 3, Node.Brick.HUMAN );
+        play.addPosition ( 2, 4, Node.Brick.HUMAN );
+        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
+        play.addPosition ( 4, 2, Node.Brick.COMPUTER  );
+        play.addPosition ( 4, 3, Node.Brick.COMPUTER  );
+        play.addPosition ( 4, 4, Node.Brick.COMPUTER  );
         b.hasPlayerWon ( Node.Brick.HUMAN.value );
         long start = System.currentTimeMillis ();
         play.findComputerMove ();
