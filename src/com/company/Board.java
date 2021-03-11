@@ -6,7 +6,7 @@ import java.util.List;
 public class Board implements Rules {
     private int PLAYFIELDSIZE;
     private boolean isGameOver = false;
-    private int ROW_TO_WIN = 4;//PLAYFIELDSIZE - 1;/// 2;
+    private int ROW_TO_WIN = 3;//PLAYFIELDSIZE - 1;/// 2;
     private Node[][] playField;
     private int xxx = 0;
     private int yyy = 0;
@@ -25,6 +25,8 @@ public class Board implements Rules {
 
     public void removePlay (int x,int y) {
         playField[y][x].setStatus ( Node.Brick.NOTPLAYED );
+        Coordinate l = new Coordinate ( x,y );
+        playedPositions.remove ( l );
     }
 
     protected ArrayList<Coordinate> possiblePlaysLimited () {
@@ -87,7 +89,6 @@ public class Board implements Rules {
             if (i == PLAYFIELDSIZE - 1) {
                 x += "\n";
             }
-            System.out.print ( x );
         }
         int column = 1;
         int row = 0;
@@ -148,10 +149,6 @@ public class Board implements Rules {
 
     public boolean isGameOver () {
         return isGameOver;
-    }
-
-    public void setGameOver (boolean gameOver) {
-        isGameOver = gameOver;
     }
 
     //TODO Implement interface Methods
@@ -369,7 +366,6 @@ public class Board implements Rules {
                         boolean before = false;
                         boolean after = false;
                         //check if the node to above of start is free if it's add extra score!
-                        System.out.println ("y:"+y);
                         if (y < PLAYFIELDSIZE && x > 0 && playField[y+1][x-1].getStatus ().equals ( Node.Brick.NOTPLAYED.value )) {
                             score += 50 * count;
                             before = true;

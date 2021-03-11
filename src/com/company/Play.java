@@ -29,9 +29,9 @@ public class Play {
     }
 
     public boolean makeATurn (Coordinate move,Node.Brick player) {
-        board.addPlay ( move.getX (),move.getY (),player );
+        board.addPlay ( move.getY (), move.getX (), player );
         findComputerMove ();
-        board.printBoard ();
+       // board.printBoard ();
         return board.isGameOver ();
     }
 
@@ -56,13 +56,13 @@ public class Play {
 
     private int computerMove (int depth,int alfa,int beta) {
         if (board.hasPlayerWon ( Node.Brick.HUMAN.value )) {
-            return calcWinScore () / depth;
-        }
-        if (board.hasPlayerWon ( Node.Brick.COMPUTER.value )) {
             return -calcWinScore () / depth;
         }
+        if (board.hasPlayerWon ( Node.Brick.COMPUTER.value )) {
+            return calcWinScore () / depth;
+        }
         if (depth == maxDepth) {
-            return board.score () / depth;
+            return board.score (); // depth;
         }
         List<Coordinate> possiblePlays = board.possiblePlaysLimited ();
         Coordinate chosenPlay = null;
@@ -70,25 +70,27 @@ public class Play {
             board.addPlay ( pos.getX (),pos.getY (),Node.Brick.COMPUTER );
             printBoard (Node.Brick.COMPUTER.value);
             int score = playerMove ( depth + 1,alfa,beta );
-            board.removePlay ( pos.getX (),pos.getY () );
-            if (score < beta) {
-                beta = score;
+            if (score > alfa) {
+                alfa = score;
                 chosenPlay = pos;
             }
+            board.removePlay ( pos.getX (),pos.getY () );
+            printBoard (Node.Brick.NOTPLAYED.value );
+            // Stop looping through moves if alpha is greater or equal to beta. Parent node is not going to be chosen anyways (Alpha-beta pruning)
             if (alfa >= beta) {
                 break;
             }
         }
         computerMove = chosenPlay;
-        return beta;
+        return alfa;
     }
 
     private int playerMove (int depth,int alfa,int beta) {
-        if (board.hasPlayerWon ( Node.Brick.COMPUTER.value )) {
-            return calcWinScore () / depth;
-        }
         if (board.hasPlayerWon ( Node.Brick.HUMAN.value )) {
             return -calcWinScore () / depth;
+        }
+        if (board.hasPlayerWon ( Node.Brick.COMPUTER.value )) {
+            return calcWinScore () / depth;
         }
         if (depth == maxDepth) {
             return board.score () / depth;
@@ -99,22 +101,22 @@ public class Play {
             board.addPlay ( pos.getX (), pos.getY (),Node.Brick.HUMAN );
             printBoard (Node.Brick.NOTPLAYED.value );
             int score = computerMove ( depth + 1,alfa,beta );
-            board.removePlay ( pos.getX (),pos.getY () );
-            printBoard (Node.Brick.NOTPLAYED.value );
-            if (score > alfa) {
-                alfa = score;
+            if (score < beta) {
+                beta = score;
                 chosenPlay = pos;
             }
+            board.removePlay ( pos.getX (),pos.getY () );
+ //           printBoard (Node.Brick.NOTPLAYED.value );
             if (alfa >= beta) {
                 break;
             }
         }
         computerMove = chosenPlay;
-        return alfa;
+        return beta;
     }
 
     private int calcWinScore () {
-        int score = 10000;
+        int score = 100000;
         for (int i = 0; i < board.getROW_TO_WIN (); i++) {
             score *= 10;
         }
