@@ -4,7 +4,7 @@
 package com.company;
 
 public class Main {
-    private final int PLAYFIELDSIZE = 6;
+    private final int PLAYFIELDSIZE = 8;
     private final int MAX_DEPTH = 6;
     private final Play play = new Play ( MAX_DEPTH,PLAYFIELDSIZE );
     private boolean isEnded = false;
@@ -19,7 +19,7 @@ public class Main {
         //m.testScore5 ();
         //m.testScore6 ();    //Working test the T fungerar för 4*4
         /**
-         * Tests for 6*6
+         * Tests for 6*6 and 4 in a row
          */
         //m.testScore7 ();
         //m.testScore8 ();
@@ -28,7 +28,10 @@ public class Main {
         //m.testScoreAIChoice10 ();
         //m.testScoreAIChoice11 ();
         //m.testComAi1 ();
-
+        /**
+         * Tests for 8*8 and 5 in a row
+         */
+        //m.testScore11 ();
 
         //m.testScoreVS2();
         m.play ();
@@ -264,6 +267,25 @@ public class Main {
         System.out.println ( (System.currentTimeMillis () - start) + "ms" );
         b.printBoard ();
         System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.COMPUTER.value ) );
+    }
+
+    private void testScore11 () {   //ADD NEW NEIGHBOURS hopefully a lot faster
+        Board b = play.getBoard ();
+        play.addPosition ( 2,1,Node.Brick.HUMAN );
+        play.addPosition ( 2,2,Node.Brick.HUMAN );
+        play.addPosition ( 2,3,Node.Brick.HUMAN );
+        play.addPosition ( 2,4,Node.Brick.HUMAN );
+        play.addPosition ( 2, 1, Node.Brick.HUMAN );
+        play.addPosition ( 4, 1, Node.Brick.COMPUTER  );
+        //play.addPosition ( 4,2,Node.Brick.COMPUTER );
+        play.addPosition ( 4,3,Node.Brick.COMPUTER );
+        play.addPosition ( 4,4,Node.Brick.COMPUTER );
+
+        long start = System.currentTimeMillis ();
+        // play.findComputerMove ();
+        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+        b.printBoard ();
+        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
     }
 
     private void testScoreAIChoice11 () {

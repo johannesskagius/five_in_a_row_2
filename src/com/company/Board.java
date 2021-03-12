@@ -10,7 +10,7 @@ public class Board implements Rules {
     private Score score;
     private int PLAYFIELDSIZE = 6;
     private boolean isGameOver = false;
-    private int ROW_TO_WIN = 4;//PLAYFIELDSIZE - 1;/// 2;
+    private int ROW_TO_WIN = 5;//PLAYFIELDSIZE - 1;/// 2;
     private Node[][] playField;
     private List<Coordinate> playedPositions = new ArrayList<> ();
     private boolean hasHumanWon;

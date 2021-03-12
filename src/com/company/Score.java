@@ -45,7 +45,7 @@ public class Score {
                             score += 50 * count;
                             after = true;
                         }
-                        if (before && after && count == 3) {
+                        if (before && after && count == inARowToWin-1) {
                             score = 10000;
                         }
                     }
@@ -71,7 +71,7 @@ public class Score {
                             score += 50 * count;
                             after = true;
                         }
-                        if (before && after && count == 3) {
+                        if (before && after && count == inARowToWin-1) {
                             score = 10000;
                         }
                     }
@@ -100,7 +100,7 @@ public class Score {
                             score += 50 * count;
                             after = true;
                         }
-                        if (before && after && count == 3) {
+                        if (before && after && count == inARowToWin-1) {
                             score = 10000;
                         }
                     }
@@ -130,7 +130,7 @@ public class Score {
                             score += 50 * count;
                             after = true;
                         }
-                        if (before && after && count == 3) {
+                        if (before && after && count == inARowToWin-1) {
                             score = 10000;
                         }
                     }
