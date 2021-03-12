@@ -24,6 +24,7 @@ public class Main {
         //m.testScore7 ();
         //m.testScore8 ();
         //m.testScore9 ();
+        m.testScore10 ();
         //m.testScoreAIChoice10 ();
         //m.testScoreAIChoice11 ();
         //m.testComAi1 ();
@@ -219,6 +220,24 @@ public class Main {
         play.addPosition ( 4,4,Node.Brick.COMPUTER );
         //play.addPosition ( 4, 1, Node.Brick.COMPUTER  );
         b.hasPlayerWon ( Node.Brick.HUMAN.value );
+        long start = System.currentTimeMillis ();
+        // play.findComputerMove ();
+        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+        b.printBoard ();
+        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
+    }
+
+    private void testScore10 () {   //ADD NEW NEIGHBOURS hopefully a lot faster
+        Board b = play.getBoard ();
+        play.addPosition ( 2,1,Node.Brick.HUMAN );
+        play.addPosition ( 2,2,Node.Brick.HUMAN );
+//        play.addPosition ( 2,3,Node.Brick.HUMAN );
+//        play.addPosition ( 2,4,Node.Brick.HUMAN );
+//        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
+//        play.addPosition ( 4,2,Node.Brick.COMPUTER );
+//        play.addPosition ( 4,3,Node.Brick.COMPUTER );
+//        play.addPosition ( 4,4,Node.Brick.COMPUTER );
+        //play.addPosition ( 4, 1, Node.Brick.COMPUTER  );
         long start = System.currentTimeMillis ();
         // play.findComputerMove ();
         System.out.println ( (System.currentTimeMillis () - start) + "ms" );

@@ -15,6 +15,8 @@ public class Board2 implements Rules {
     private List<Coordinate> playedPositions = new ArrayList<> ();
     private boolean hasHumanWon;
     private boolean hasComputerWon;
+    private ArrayList<Coordinate> possiblePlays = new ArrayList<> ();
+
 
 
     public Board2 (int playFieldSize) {
@@ -28,11 +30,41 @@ public class Board2 implements Rules {
         playField[y][x+1].setStatus ( s );          //TA BORT +1 om jag kopierar
         Coordinate cor = new Coordinate ( y,x );
         playedPositions.add ( cor );
+        //Add free neighbors to possiblePlays
+        addFreeNeigbors(cor);
+
         if(s.value.equals ( Node.Brick.HUMAN.value ))
             hasHumanWon = hasPlayerWon ( cor, s.value );
         else
             hasComputerWon = hasPlayerWon ( cor, s.value );
     }
+
+    private void addFreeNeigbors (Coordinate cor) {
+        int x = cor.getX ();
+        int y = cor.getY ();
+        neighbourStatus ( x+1, y ); // to the right
+        neighbourStatus ( x-1, y ); // to the left
+        neighbourStatus ( x, y + 1 ); //below;
+        neighbourStatus ( x, y - 1 ); //above;
+        neighbourStatus ( x + 1, y - 1 ); //top right;
+        neighbourStatus ( x - 1, y - 1 ); //top left;
+        neighbourStatus ( x + 1, y + 1 ); //down right
+        neighbourStatus ( x - 1, y + 1 ); //down left
+    }
+
+    private void neighbourStatus(int x, int y) throws ArrayIndexOutOfBoundsException{
+        final String NOTINUSE = Node.Brick.NOTPLAYED.value;
+        try {
+            if(playField[x][y].getStatus ().equals ( NOTINUSE )){
+                Coordinate posAdd =new Coordinate ( y, x );
+                if(!possiblePlays.contains ( posAdd )){
+                    possiblePlays.add ( posAdd );
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException ignored) {
+        }
+    }
+
 
     public void removePlay (int x,int y) {
         playField[y][x].setStatus ( Node.Brick.NOTPLAYED );
@@ -42,7 +74,7 @@ public class Board2 implements Rules {
 
     protected ArrayList<Coordinate> getAllPossiblePlays () {
         final String NOTPLAYED = Node.Brick.NOTPLAYED.value;
-        ArrayList<Coordinate> possiblePlays = new ArrayList<> ();
+        possiblePlays = new ArrayList<> ();
         Coordinate i;
         for (int y = 0; y < PLAYFIELDSIZE; y++) {
             for (int x = 0; x < PLAYFIELDSIZE; x++) {

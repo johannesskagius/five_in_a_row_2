@@ -15,6 +15,8 @@ public class Board implements Rules {
     private List<Coordinate> playedPositions = new ArrayList<> ();
     private boolean hasHumanWon;
     private boolean hasComputerWon;
+    private ArrayList<Coordinate> possiblePlays = new ArrayList<> ();
+
 
     public Board (int playFieldSize) {
         this.PLAYFIELDSIZE = playFieldSize;
@@ -27,10 +29,39 @@ public class Board implements Rules {
         playField[y][x].setStatus ( s );
         Coordinate cor = new Coordinate ( y,x );
         playedPositions.add ( cor );
+        if(possiblePlays.contains ( cor ))
+            possiblePlays.remove ( cor );
+        addFreeNeigbors ( cor );
         if(s.value.equals ( Node.Brick.HUMAN.value ))
             hasHumanWon = hasPlayerWon ( cor, s.value );
         else
             hasComputerWon = hasPlayerWon ( cor, s.value );
+    }
+
+    private void addFreeNeigbors (Coordinate cor) {
+        int x = cor.getX ();
+        int y = cor.getY ();
+        neighbourStatus ( x+1, y ); // to the right
+        neighbourStatus ( x-1, y ); // to the left
+        neighbourStatus ( x, y + 1 ); //below;
+        neighbourStatus ( x, y - 1 ); //above;
+        neighbourStatus ( x + 1, y - 1 ); //top right;
+        neighbourStatus ( x - 1, y - 1 ); //top left;
+        neighbourStatus ( x + 1, y + 1 ); //down right
+        neighbourStatus ( x - 1, y + 1 ); //down left
+    }
+
+    private void neighbourStatus(int x, int y) throws ArrayIndexOutOfBoundsException{
+        final String NOTINUSE = Node.Brick.NOTPLAYED.value;
+        try {
+            if(playField[y][x].getStatus ().equals ( NOTINUSE )){
+                Coordinate posAdd =new Coordinate ( y, x );
+                if(!possiblePlays.contains ( posAdd )){
+                    possiblePlays.add ( posAdd );
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException ignored) {
+        }
     }
 
     public boolean isHasHumanWon () {
