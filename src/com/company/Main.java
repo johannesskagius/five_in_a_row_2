@@ -33,9 +33,10 @@ public class Main {
          */
         //m.testScore11 ();
         //m.testScore12 ();
+        m.testAITime ();
 
         //m.testScoreVS2();
-        m.play ();
+        //m.play ();
     }
 
 
@@ -302,6 +303,23 @@ public class Main {
 
         long start = System.currentTimeMillis ();
         // play.findComputerMove ();
+        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+        b.printBoard ();
+        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
+    }
+
+    private void testAITime () {   //ADD NEW NEIGHBOURS hopefully a lot faster
+        Board b = play.getBoard ();
+        play.addPosition ( 1,3,Node.Brick.HUMAN );
+        play.addPosition ( 2,4,Node.Brick.HUMAN );
+        play.addPosition ( 3,5,Node.Brick.HUMAN );
+        play.addPosition ( 4,6,Node.Brick.HUMAN );
+        play.addPosition ( 3,1,Node.Brick.COMPUTER  );
+        play.addPosition ( 4,2,Node.Brick.COMPUTER );
+        play.addPosition ( 5,3,Node.Brick.COMPUTER );
+        play.addPosition ( 6,4,Node.Brick.COMPUTER );
+        long start = System.currentTimeMillis ();
+        play.findComputerMove ();
         System.out.println ( (System.currentTimeMillis () - start) + "ms" );
         b.printBoard ();
         System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
