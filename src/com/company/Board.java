@@ -215,6 +215,10 @@ public class Board implements Rules {
         return isGameOver;
     }
 
+    public ArrayList<Coordinate> getPossiblePlaysLimited () {
+        return possiblePlays;
+    }
+
     @Override  //Används inte längre
     public boolean hasPlayerWon (String player) {
         //Minimum positions to be played before anyone can win

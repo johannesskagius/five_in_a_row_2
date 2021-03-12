@@ -79,7 +79,10 @@ public class Play {
         if (depth == maxDepth) {
             return board.score () / depth;
         }
-        List<Coordinate> possiblePlays = board.possiblePlaysLimited ();
+
+        //throws error becuase the list is modified within the iteration.
+        //TODO fix the above
+        List<Coordinate> possiblePlays = board.getPossiblePlaysLimited ();
         Coordinate chosenPlay = null;
         for (Coordinate pos : possiblePlays) {
             board.addPlay ( pos.getX (),pos.getY (),Node.Brick.COMPUTER );
@@ -111,7 +114,7 @@ public class Play {
             return board.score () / depth;
         }
         Coordinate chosenPlay = null;
-        List<Coordinate> possiblePlays = board.possiblePlaysLimited ();
+        List<Coordinate> possiblePlays = board.getPossiblePlaysLimited ();
         for (Coordinate pos : possiblePlays) {
             board.addPlay ( pos.getX (),pos.getY (),Node.Brick.HUMAN );
             //printBoard (Node.Brick.NOTPLAYED.value );
