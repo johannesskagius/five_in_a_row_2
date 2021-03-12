@@ -33,10 +33,10 @@ public class Main {
          */
         //m.testScore11 ();
         //m.testScore12 ();
-        m.testAITime ();
+        //m.testAITime ();
 
         //m.testScoreVS2();
-        //m.play ();
+        m.play ();
     }
 
 
@@ -58,7 +58,11 @@ public class Main {
         int choice;
         do {
             System.out.print ( s2 );
-            choice = s.getInt ();
+            try {
+                choice = s.getInt ();
+            } catch (NumberFormatException e) {
+                return getChoice ( s, s2 );
+            }
         } while (!(0 <= choice && choice < PLAYFIELDSIZE));
         return choice;
     }
