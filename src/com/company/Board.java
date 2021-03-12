@@ -31,7 +31,7 @@ public class Board implements Rules {
         playedPositions.add ( cor );
         if(possiblePlays.contains ( cor ))
             possiblePlays.remove ( cor );
-        addFreeNeigbors ( cor );
+        //addFreeNeigbors ( cor );
         if(s.value.equals ( Node.Brick.HUMAN.value ))
             hasHumanWon = hasPlayerWon ( cor, s.value );
         else
@@ -93,7 +93,7 @@ public class Board implements Rules {
         return possiblePlays;
     }
 
-    protected ArrayList<Coordinate> possiblePlaysLimited () {
+    protected ArrayList<Coordinate> getPossiblePlaysLimited () {
         final String NOTPLAYED = Node.Brick.NOTPLAYED.value;
         ArrayList<Coordinate> possiblePlays = new ArrayList<> ();
         Coordinate i;
@@ -106,6 +106,10 @@ public class Board implements Rules {
                 }
             }
         }
+        return possiblePlays;
+    }
+
+    public ArrayList<Coordinate> getPossiblePlaysLimited2 () {
         return possiblePlays;
     }
 
@@ -215,9 +219,7 @@ public class Board implements Rules {
         return isGameOver;
     }
 
-    public ArrayList<Coordinate> getPossiblePlaysLimited () {
-        return possiblePlays;
-    }
+
 
     @Override  //Används inte längre
     public boolean hasPlayerWon (String player) {

@@ -80,9 +80,8 @@ public class Play {
             return board.score () / depth;
         }
 
-        //throws error becuase the list is modified within the iteration.
-        //TODO fix the above
         List<Coordinate> possiblePlays = board.getPossiblePlaysLimited ();
+        //List<Coordinate> possiblePlays = board.getPossiblePlaysLimited2 ();
         Coordinate chosenPlay = null;
         for (Coordinate pos : possiblePlays) {
             board.addPlay ( pos.getX (),pos.getY (),Node.Brick.COMPUTER );
@@ -115,6 +114,7 @@ public class Play {
         }
         Coordinate chosenPlay = null;
         List<Coordinate> possiblePlays = board.getPossiblePlaysLimited ();
+        //List<Coordinate> possiblePlays = board.getPossiblePlaysLimited2 ();
         for (Coordinate pos : possiblePlays) {
             board.addPlay ( pos.getX (),pos.getY (),Node.Brick.HUMAN );
             //printBoard (Node.Brick.NOTPLAYED.value );
