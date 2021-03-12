@@ -4,8 +4,8 @@
 package com.company;
 
 public class Main {
-    private final int PLAYFIELDSIZE = 8;
-    private final int MAX_DEPTH = 4;
+    private final int PLAYFIELDSIZE = 6;
+    private final int MAX_DEPTH = 6;
     private final Play play = new Play ( MAX_DEPTH,PLAYFIELDSIZE );
     private boolean isEnded = false;
 
@@ -30,7 +30,7 @@ public class Main {
 
 
         //m.testScoreVS2();
-        //m.play ();
+        m.play ();
     }
 
 

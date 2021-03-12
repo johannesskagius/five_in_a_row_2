@@ -6,40 +6,32 @@ package com.company;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Board implements Rules {
+public class Board2 implements Rules {
     private Score score;
     private int PLAYFIELDSIZE = 6;
     private boolean isGameOver = false;
-    private int ROW_TO_WIN = 4;//PLAYFIELDSIZE - 1;/// 2;
+    private int ROW_TO_WIN = 4;
     private Node[][] playField;
     private List<Coordinate> playedPositions = new ArrayList<> ();
     private boolean hasHumanWon;
     private boolean hasComputerWon;
 
-    public Board (int playFieldSize) {
+
+    public Board2 (int playFieldSize) {
         this.PLAYFIELDSIZE = playFieldSize;
         playField = new Node[playFieldSize][playFieldSize];
         addPlayField ();
-        score = new Score ( this );
+        //score = new Score ( this );
     }
 
     public void addPlay (int x,int y,Node.Brick s) {
-        playField[y][x].setStatus ( s );
+        playField[y][x+1].setStatus ( s );          //TA BORT +1 om jag kopierar
         Coordinate cor = new Coordinate ( y,x );
         playedPositions.add ( cor );
         if(s.value.equals ( Node.Brick.HUMAN.value ))
             hasHumanWon = hasPlayerWon ( cor, s.value );
         else
             hasComputerWon = hasPlayerWon ( cor, s.value );
-    }
-
-    public boolean isHasHumanWon () {
-        return hasHumanWon;
-    }
-
-
-    public boolean isHasComputerWon () {
-        return hasComputerWon;
     }
 
     public void removePlay (int x,int y) {
@@ -168,7 +160,7 @@ public class Board implements Rules {
         this.playField = playField;
     }
 
-    public Board getBoard () {
+    public Board2 getBoard () {
         return this;
     }
 
@@ -184,11 +176,26 @@ public class Board implements Rules {
         return isGameOver;
     }
 
-    @Override  //Används inte längre
+    public boolean isHasHumanWon () {
+        return hasHumanWon;
+    }
+
+    public void setHasHumanWon (boolean hasHumanWon) {
+        this.hasHumanWon = hasHumanWon;
+    }
+
+    public boolean isHasComputerWon () {
+        return hasComputerWon;
+    }
+
+    public void setHasComputerWon (boolean hasComputerWon) {
+        this.hasComputerWon = hasComputerWon;
+    }
+
+    @Override
     public boolean hasPlayerWon (String player) {
         //Minimum positions to be played before anyone can win
         if (playedPositions.size () < ROW_TO_WIN * 2 - 1) return false;
-
         boolean playerWon = false;
         for (Coordinate x : playedPositions) {
             if (playField[x.getY ()][x.getX ()].getStatus ().equals ( player )) {
@@ -214,6 +221,7 @@ public class Board implements Rules {
         int leftUp = START_COUNT;
         int rightDown = START_COUNT;
         int leftDown = START_COUNT;
+        boolean []continueSearch = new boolean[8];
 
         for (int i = START_COUNT; i <= ROW_TO_WIN; i++) {
             //Check all rows uppwards
@@ -221,14 +229,14 @@ public class Board implements Rules {
                 //testWhichNodeAreWeLookingAt(playField[y-i][x]);
                 if (playField[y - i][x].getStatus ().equals ( player ))
                     yPos++;
-                else yPos = START_COUNT;
+                else continueSearch[0] = false;
             }
             //Check all rows downWards
             if (y + i <= ROW_TO_WIN) {
                 //testWhichNodeAreWeLookingAt(playField[y+i][x]);
                 if (playField[y + i][x].getStatus ().equals ( player ))
                     yMin++;
-                else yMin = START_COUNT;
+                else continueSearch[1] = false;
             }
 
             if (x + i < ROW_TO_WIN) {
@@ -236,7 +244,7 @@ public class Board implements Rules {
                 //testWhichNodeAreWeLookingAt ( playField[y][x + i] );
                 if (playField[y][x + i].getStatus ().equals ( player ))
                     xPos++;
-                else xPos = START_COUNT;
+                else continueSearch[2] = false;
             }
 
             if (x - i >= 0) {
@@ -245,38 +253,43 @@ public class Board implements Rules {
                 //testWhichNodeAreWeLookingAt(playField[y][s]);
                 if (playField[y][s].getStatus ().equals ( player ))
                     xMin++;
-                else xMin = START_COUNT;
+                else continueSearch[3] = false;
             }
             //Right upwards
             if (x + i < ROW_TO_WIN && y - i >= 0) {
                 //testWhichNodeAreWeLookingAt(playField[y-i][x+i]);
                 if (playField[y - i][x + i].getStatus ().equals ( player ))
                     rightUp++;
-                else rightUp = START_COUNT;
+                else continueSearch[4] = false;
             }
             //Left upwards
             if (x - i >= 0 && y - i >= 0) {
                 // testWhichNodeAreWeLookingAt(playField[y-i][x-i]);
                 if (playField[y - i][x - i].getStatus ().equals ( player )) leftUp++;
-                else leftUp = START_COUNT;
+                else continueSearch[5] = false;
             }
             //RightDown
             if (x + i < ROW_TO_WIN && y + i < ROW_TO_WIN) {
                 //testWhichNodeAreWeLookingAt(playField[y+i][x+i]);
                 if (playField[y + i][x + i].getStatus ().equals ( player ))
                     rightDown++;
-                else rightDown = START_COUNT;
+                else continueSearch[6] = false;
             }
             //left down
             if (x - i >= 0 && y + i < ROW_TO_WIN) {
                 if (playField[y + i][x - i].getStatus ().equals ( player ))
                     leftDown++;
-                else leftDown = START_COUNT;
+                else continueSearch[7] = false;
             }
 
             if (xPos >= ROW_TO_WIN || xMin >= ROW_TO_WIN || yPos >= ROW_TO_WIN || yMin >= ROW_TO_WIN || rightUp >= ROW_TO_WIN || rightDown >= ROW_TO_WIN || leftDown >= ROW_TO_WIN || leftUp >= ROW_TO_WIN) {
                 return true;
             }
+//            for(boolean z : continueSearch){
+//                if(z){
+//                    break;
+//                }
+//            }
         }
         return false;
     }

@@ -39,7 +39,7 @@ public class Play {
     }
 
     public void findComputerMove () {
-        int i = computerMove ( 1,alfa,beta );
+        computerMove ( 1,alfa,beta );
         if (computerMove == null) {
             findASpot ();
         }
@@ -70,10 +70,10 @@ public class Play {
     }
 
     private int computerMove (int depth,int alfa,int beta) {
-        if (board.hasPlayerWon ( Node.Brick.HUMAN.value )) {
+        if (board.isHasComputerWon ()) {
             return calcWinScore () / depth;
         }
-        if (board.hasPlayerWon ( Node.Brick.COMPUTER.value )) {
+        if (board.isHasHumanWon ()) {
             return -calcWinScore () / depth;
         }
         if (depth == maxDepth) {
@@ -101,10 +101,10 @@ public class Play {
     }
 
     private int playerMove (int depth,int alfa,int beta) {
-        if (board.hasPlayerWon ( Node.Brick.HUMAN.value )) {
+        if (board.isHasComputerWon ()) {
             return calcWinScore () / depth;
         }
-        if (board.hasPlayerWon ( Node.Brick.COMPUTER.value )) {
+        if (board.isHasHumanWon ()) {
             return -calcWinScore () / depth;
         }
         if (depth == maxDepth) {
