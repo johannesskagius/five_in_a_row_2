@@ -46,7 +46,9 @@ public class Score {
                             after = true;
                         }
                         if (before && after && count == inARowToWin-1) {
-                            score = 10000;
+                            score += 10000;
+                        }else if(before && after && count == inARowToWin-2){
+                            score += 3000;
                         }
                     }
                     count++;
@@ -72,7 +74,9 @@ public class Score {
                             after = true;
                         }
                         if (before && after && count == inARowToWin-1) {
-                            score = 10000;
+                            score += 10000;
+                        }else if(before && after && count == inARowToWin-2){
+                            score += 3000;
                         }
                     }
                     count++;
@@ -101,7 +105,9 @@ public class Score {
                             after = true;
                         }
                         if (before && after && count == inARowToWin-1) {
-                            score = 10000;
+                            score += 10000;
+                        }else if(before && after && count == inARowToWin-2){
+                            score += 3000;
                         }
                     }
                     count++;
@@ -131,7 +137,9 @@ public class Score {
                             after = true;
                         }
                         if (before && after && count == inARowToWin-1) {
-                            score = 10000;
+                            score += 10000;
+                        }else if(before && after && count == inARowToWin-2){
+                            score += 3000;
                         }
                     }
                     count++;

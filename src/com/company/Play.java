@@ -134,7 +134,7 @@ public class Play {
     }
 
     private int calcWinScore () {
-        int score = 100000;
+        int score = 1000;
         for (int i = 0; i < board.getROW_TO_WIN (); i++) {
             score *= 10;
         }
