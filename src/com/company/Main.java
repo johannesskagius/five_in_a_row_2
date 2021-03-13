@@ -42,7 +42,7 @@ public class Main {
 
     private void play () {
         Scan s = new Scan ();
-        while (true) {
+        while (!isEnded) {
             play.printBoard ();
             int x = getChoice ( s,"X: " );
             int y = getChoice ( s,"Y: " );
