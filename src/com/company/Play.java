@@ -1,6 +1,6 @@
-/**
- * author josk3261 Johannes Skagius
- */
+//  @author josk3261 Johannes Skagius
+// Stockholms university
+// Kurs: ALDA - algoritmer och datastrukturer
 
 package com.company;
 
@@ -15,19 +15,14 @@ public class Play {
     private final int beta;
     private Coordinate computerMove;
 
-    public Play (int maxDepth,int playFieldSize) {
+    public Play (int maxDepth,int playFieldSize, int streakToWin) {
         this.maxDepth = maxDepth;
         alfa = ALPHA_START_VALUE;
         beta = BETA_START_VALUE;
-        board = new Board ( playFieldSize );
+        board = new Board ( playFieldSize, streakToWin );
     }
 
     public void printBoard () {
-        board.printBoard ();
-    }
-
-    public void printBoard (String s) {
-        System.out.println ( s );
         board.printBoard ();
     }
 
@@ -69,6 +64,14 @@ public class Play {
         return board;
     }
 
+    /**
+     *
+     * @param depth
+     * @param alfa
+     * @param beta
+     * @return
+     */
+
     private int computerMove (int depth,int alfa,int beta) {
         if (board.isHasComputerWon ()) {
             return calcWinScore () / depth;
@@ -102,6 +105,13 @@ public class Play {
         return alfa;
     }
 
+    /**
+     *
+     * @param depth
+     * @param alfa
+     * @param beta
+     * @return
+     */
     private int playerMove (int depth,int alfa,int beta) {
         if (board.isHasComputerWon ()) {
             return calcWinScore () / depth;
@@ -133,13 +143,15 @@ public class Play {
         return beta;
     }
 
+    /**
+     *
+     * @return
+     */
     private int calcWinScore () {
         int score = 1000;
-        for (int i = 0; i < board.getROW_TO_WIN (); i++) {
+        for (int i = 0; i < board.getStreakToWin (); i++) {
             score *= 10;
         }
-        return score * board.getROW_TO_WIN ();
+        return score * board.getStreakToWin ();
     }
-
-
 }

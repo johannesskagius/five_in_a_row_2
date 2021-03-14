@@ -1,12 +1,13 @@
-/**
- * author josk3261 Johannes Skagius
- */
+//  @author josk3261 Johannes Skagius
+// Stockholms university
+// Kurs: ALDA - algoritmer och datastrukturer
 package com.company;
 
 public class Main {
     private final int PLAYFIELDSIZE = 8;
     private final int MAX_DEPTH = 6;
-    private final Play play = new Play ( MAX_DEPTH,PLAYFIELDSIZE );
+    private final int STREAK_TO_WIN = 5;
+    private final Play play = new Play ( MAX_DEPTH,PLAYFIELDSIZE, STREAK_TO_WIN );
     private boolean isEnded = false;
 
     public static void main (String[] args) {
@@ -77,7 +78,7 @@ public class Main {
         play.addPosition ( 0,2,Node.Brick.COMPUTER );
         b.addPlay ( 0,1,Node.Brick.COMPUTER );
         play.printBoard ();
-        boolean x = b.hasPlayerWon ( Node.Brick.HUMAN.value );
+        //boolean x = b.hasPlayerWon ( Node.Brick.HUMAN.value );
 //        System.out.println (x +" score: " +b.score ());
 //        play.findComputerMove ();
 //        int i = play.getScore ();
@@ -360,21 +361,4 @@ public class Main {
         System.out.println ( i );
     }
 
-    private void testScoreVS2(){
-        Board b = play.getBoard ();
-        Score2 score2 = new Score2 ( b );
-        play.addPosition ( 2,1,Node.Brick.HUMAN );
-        play.addPosition ( 2,2,Node.Brick.HUMAN );
-        play.addPosition ( 2,3,Node.Brick.HUMAN );
-        //play.addPosition ( 2,4,Node.Brick.HUMAN );
-        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
-        play.addPosition ( 4,2,Node.Brick.COMPUTER );
-        play.addPosition ( 4,3,Node.Brick.COMPUTER );
-        play.addPosition ( 4,4,Node.Brick.COMPUTER );
-        play.printBoard ();
-
-        long start = System.currentTimeMillis ();
-        int i = score2.getScore ();
-        System.out.println ( (System.currentTimeMillis () - start) + "ms" +"  Score2:"+i );
-    }
 }

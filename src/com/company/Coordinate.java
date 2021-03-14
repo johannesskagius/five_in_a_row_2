@@ -1,6 +1,6 @@
-/**
- * author josk3261 Johannes Skagius
- */
+//  @author josk3261 Johannes Skagius
+// Stockholms university
+// Kurs: ALDA - algoritmer och datastrukturer
 
 package com.company;
 
@@ -18,16 +18,8 @@ public class Coordinate{
         return x;
     }
 
-    public void setX (int x) {
-        this.x = x;
-    }
-
     public int getY () {
         return y;
-    }
-
-    public void setY (int y) {
-        this.y = y;
     }
 
     @Override
