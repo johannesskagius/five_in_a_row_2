@@ -35,10 +35,31 @@ public class Main {
         //m.testScore11 ();
         //m.testScore12 ();
         //m.testScore13 ();
+        //m.testScore14 ();
         //m.testAITime ();
 
         //m.testScoreVS2();
         m.play ();
+    }
+
+    private void testScore14 () {
+                Board b = play.getBoard ();
+        play.addPosition ( 4,3,Node.Brick.HUMAN );
+        play.addPosition ( 4,4,Node.Brick.HUMAN );
+        play.addPosition ( 4,5,Node.Brick.HUMAN );
+        play.addPosition ( 4,6,Node.Brick.HUMAN );
+        play.addPosition ( 5,3,Node.Brick.COMPUTER );
+        play.addPosition ( 4,2,Node.Brick.COMPUTER );
+        play.addPosition ( 5,2,Node.Brick.COMPUTER );
+
+
+        play.printBoard ();
+        //boolean x = b.hasPlayerWon ( Node.Brick.HUMAN.value );
+        //System.out.println (x +" score: " +b.score ());
+        play.findComputerMove ();
+        int i = play.getScore ();
+        System.out.println (i);
+        play.printBoard ();
     }
 
 
@@ -46,9 +67,9 @@ public class Main {
         Scan s = new Scan ();
         while (!isEnded) {
             play.printBoard ();
-            int x = getChoice ( s,"X: " );
-            int y = getChoice ( s,"Y: " );
-            Coordinate move = new Coordinate ( x,y );
+            int y = getChoice ( s,"X: " );
+            int x = getChoice ( s,"Y: " );
+            Coordinate move = new Coordinate ( y,x );
             long start = System.currentTimeMillis ();
             isEnded = play.makeATurn ( move,Node.Brick.HUMAN );
             System.out.println ( (System.currentTimeMillis () - start) + "ms" );
@@ -313,6 +334,25 @@ public class Main {
 //    }
 //
 //    private void testScore11 () {   //ADD NEW NEIGHBOURS hopefully a lot faster
+//        Board b = play.getBoard ();
+//        play.addPosition ( 2,1,Node.Brick.HUMAN );
+//        play.addPosition ( 2,2,Node.Brick.HUMAN );
+//        play.addPosition ( 2,3,Node.Brick.HUMAN );
+//        play.addPosition ( 2,4,Node.Brick.HUMAN );
+//        play.addPosition ( 2, 1, Node.Brick.HUMAN );
+//        play.addPosition ( 4, 1, Node.Brick.COMPUTER  );
+//        //play.addPosition ( 4,2,Node.Brick.COMPUTER );
+//        play.addPosition ( 4,3,Node.Brick.COMPUTER );
+//        play.addPosition ( 4,4,Node.Brick.COMPUTER );
+//
+//        long start = System.currentTimeMillis ();
+//        // play.findComputerMove ();
+//        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+//        b.printBoard ();
+//        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
+//    }
+
+    //    private void testScore11 () {   //ADD NEW NEIGHBOURS hopefully a lot faster
 //        Board b = play.getBoard ();
 //        play.addPosition ( 2,1,Node.Brick.HUMAN );
 //        play.addPosition ( 2,2,Node.Brick.HUMAN );

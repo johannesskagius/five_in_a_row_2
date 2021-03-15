@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    private final int PLAYFIELDSIZE;// = 6;
+    private final int PLAYFIELDSIZE;
     private boolean isGameOver = false;
-    private int streakToWin;// = 5;//PLAYFIELDSIZE - 1;/// 2;
+    private int streakToWin;
     private Node[][] playField;
     private List<Coordinate> playedPositions = new ArrayList<> ();
     private boolean hasHumanWon;
