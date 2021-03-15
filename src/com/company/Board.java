@@ -242,4 +242,9 @@ public class Board {
         int computer = score.getScore ( Node.Brick.COMPUTER.value );
         return computer - human;
     }
+
+    public int getWinningScore(){
+        Score score = new Score ( this );
+        return score.calcWinScore();
+    }
 }

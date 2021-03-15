@@ -69,314 +69,314 @@ public class Main {
         return choice;
     }
 
-    private void testScore () {
-        Board b = play.getBoard ();
-        play.addPosition ( 2,2,Node.Brick.HUMAN );
-        play.addPosition ( 2,3,Node.Brick.HUMAN );
-
-        //play.addPosition ( 2, 1, Node.Brick.HUMAN );
-        play.addPosition ( 1,2,Node.Brick.COMPUTER );
-        play.addPosition ( 0,2,Node.Brick.COMPUTER );
-        b.addPlay ( 0,1,Node.Brick.COMPUTER );
-        play.printBoard ();
-        //boolean x = b.hasPlayerWon ( Node.Brick.HUMAN.value );
-//        System.out.println (x +" score: " +b.score ());
-//        play.findComputerMove ();
-//        int i = play.getScore ();
-//        System.out.println (i);
+//    private void testScore () {
+//        Board b = play.getBoard ();
+//        play.addPosition ( 2,2,Node.Brick.HUMAN );
+//        play.addPosition ( 2,3,Node.Brick.HUMAN );
+//
+//        //play.addPosition ( 2, 1, Node.Brick.HUMAN );
+//        play.addPosition ( 1,2,Node.Brick.COMPUTER );
+//        play.addPosition ( 0,2,Node.Brick.COMPUTER );
+//        b.addPlay ( 0,1,Node.Brick.COMPUTER );
 //        play.printBoard ();
-    }
-
-    private void testScore2 () {
-        Board b = play.getBoard ();
-        int x = 1;
-        play.addPosition ( 2,2,Node.Brick.HUMAN );
-        play.addPosition ( 2,3,Node.Brick.HUMAN );
-        //play.addPosition ( 2, 1, Node.Brick.HUMAN );
-        play.addPosition ( 2,4,Node.Brick.HUMAN );
-        // play.addPosition ( 1, 1, Node.Brick.COMPUTER  );
-        play.addPosition ( 1,1,Node.Brick.COMPUTER );
-        play.addPosition ( 2,1,Node.Brick.COMPUTER );
-        play.addPosition ( 3,1,Node.Brick.COMPUTER );
-        b.printBoard ();
-        int i = b.score ();
-        System.out.println ( i );
-    }
-
-    private void testScore3 () {
-        Board b = play.getBoard ();
-        int x = 1;
-        play.addPosition ( 2,2,Node.Brick.HUMAN );
-        play.addPosition ( 2,3,Node.Brick.HUMAN );
-        play.addPosition ( 2,4,Node.Brick.HUMAN );
-        play.addPosition ( 1,1,Node.Brick.COMPUTER );
-        play.addPosition ( 3,1,Node.Brick.COMPUTER );
-
-        //play.addPosition ( 3, 4, Node.Brick.COMPUTER  );
-        play.addPosition ( 2,1,Node.Brick.COMPUTER );
-
-        b.printBoard ();
-        System.out.println ( b.score () );
-    }
-
-    private void testScore4 () {
-        Board b = play.getBoard ();
-        play.addPosition ( 2,2,Node.Brick.HUMAN );
-        play.addPosition ( 2,3,Node.Brick.HUMAN );
-        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
-        play.addPosition ( 1,1,Node.Brick.COMPUTER );
-        play.addPosition ( 3,1,Node.Brick.COMPUTER );
-        b.hasPlayerWon ( Node.Brick.HUMAN.value );
-        b.printBoard ();
-        long start = System.currentTimeMillis ();
-        play.findComputerMove ();
-        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
-        b.printBoard ();
-        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
-    }
-
-
-    /**
-     * Chooses win before save
-     */
-    private void testScore5 () {
-        Board b = play.getBoard ();
-        play.addPosition ( 2,2,Node.Brick.HUMAN );
-        play.addPosition ( 2,3,Node.Brick.HUMAN );
-        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
-        play.addPosition ( 1,2,Node.Brick.COMPUTER );
-        play.addPosition ( 1,3,Node.Brick.COMPUTER );
-        b.hasPlayerWon ( Node.Brick.HUMAN.value );
-        //b.printBoard ();
-        //long start = System.currentTimeMillis ();
-        play.findComputerMove ();
-        //System.out.println ( (System.currentTimeMillis () - start) + "ms" );
-        b.printBoard ();
-        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.COMPUTER.value ) );
-    }
-
-    /**
-     * For playfield 4*4 with MAXDEPTH of 3 with 3 in a row to win
-     */
-    private void testScore6 () {
-        Board b = play.getBoard ();
-        play.addPosition ( 2,2,Node.Brick.HUMAN );
-        play.addPosition ( 2,3,Node.Brick.HUMAN );
-        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
-        play.addPosition ( 1,1,Node.Brick.COMPUTER );
-        play.addPosition ( 3,1,Node.Brick.COMPUTER );
-        b.hasPlayerWon ( Node.Brick.HUMAN.value );
-        //b.printBoard ();
-        long start = System.currentTimeMillis ();
-        play.findComputerMove ();
-        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
-        b.printBoard ();
-        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.COMPUTER.value ) );
-    }
-
-    /**
-     * for 6*6
-     */
-    private void testScore7 () {
-        Board b = play.getBoard ();
-        play.addPosition ( 2,2,Node.Brick.HUMAN );
-        play.addPosition ( 2,3,Node.Brick.HUMAN );
-        play.addPosition ( 2,4,Node.Brick.HUMAN );
-        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
-        play.addPosition ( 1,1,Node.Brick.COMPUTER );
-        play.addPosition ( 2,1,Node.Brick.COMPUTER );
-        play.addPosition ( 3,1,Node.Brick.COMPUTER );
-        b.hasPlayerWon ( Node.Brick.HUMAN.value );
-        long start = System.currentTimeMillis ();
-        play.findComputerMove ();
-        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
-        b.printBoard ();
-        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
-    }
-
-    /**
-     * for 6*6
-     * equal playing field gives the same score!
-     */
-    private void testScore8 () {
-        Board b = play.getBoard ();
-        play.addPosition ( 2,2,Node.Brick.HUMAN );
-        play.addPosition ( 2,3,Node.Brick.HUMAN );
-        play.addPosition ( 2,4,Node.Brick.HUMAN );
-        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
-        play.addPosition ( 4,2,Node.Brick.COMPUTER );
-        play.addPosition ( 4,3,Node.Brick.COMPUTER );
-        play.addPosition ( 4,4,Node.Brick.COMPUTER );
-        b.hasPlayerWon ( Node.Brick.HUMAN.value );
-        long start = System.currentTimeMillis ();
-        // play.findComputerMove ();
-        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
-        b.printBoard ();
-        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.COMPUTER.value ) );
-    }
-
-    /**
-     * for 6*6
-     * equal playing field gives the same score!
-     */
-    private void testScore9 () {
-        Board b = play.getBoard ();
-        play.addPosition ( 2,1,Node.Brick.HUMAN );
-        play.addPosition ( 2,2,Node.Brick.HUMAN );
-        play.addPosition ( 2,3,Node.Brick.HUMAN );
-        play.addPosition ( 2,4,Node.Brick.HUMAN );
-        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
-        play.addPosition ( 4,2,Node.Brick.COMPUTER );
-        play.addPosition ( 4,3,Node.Brick.COMPUTER );
-        play.addPosition ( 4,4,Node.Brick.COMPUTER );
-        //play.addPosition ( 4, 1, Node.Brick.COMPUTER  );
-        b.hasPlayerWon ( Node.Brick.HUMAN.value );
-        long start = System.currentTimeMillis ();
-        // play.findComputerMove ();
-        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
-        b.printBoard ();
-        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
-    }
-
-    private void testScore10 () {   //ADD NEW NEIGHBOURS hopefully a lot faster
-        Board b = play.getBoard ();
-        play.addPosition ( 2,1,Node.Brick.HUMAN );
-        play.addPosition ( 2,2,Node.Brick.HUMAN );
-        play.addPosition ( 2,3,Node.Brick.HUMAN );
-        play.addPosition ( 2,4,Node.Brick.HUMAN );
+//        //boolean x = b.hasPlayerWon ( Node.Brick.HUMAN.value );
+////        System.out.println (x +" score: " +b.score ());
+////        play.findComputerMove ();
+////        int i = play.getScore ();
+////        System.out.println (i);
+////        play.printBoard ();
+//    }
+//
+//    private void testScore2 () {
+//        Board b = play.getBoard ();
+//        int x = 1;
+//        play.addPosition ( 2,2,Node.Brick.HUMAN );
+//        play.addPosition ( 2,3,Node.Brick.HUMAN );
+//        //play.addPosition ( 2, 1, Node.Brick.HUMAN );
+//        play.addPosition ( 2,4,Node.Brick.HUMAN );
+//        // play.addPosition ( 1, 1, Node.Brick.COMPUTER  );
+//        play.addPosition ( 1,1,Node.Brick.COMPUTER );
+//        play.addPosition ( 2,1,Node.Brick.COMPUTER );
+//        play.addPosition ( 3,1,Node.Brick.COMPUTER );
+//        b.printBoard ();
+//        int i = b.score ();
+//        System.out.println ( i );
+//    }
+//
+//    private void testScore3 () {
+//        Board b = play.getBoard ();
+//        int x = 1;
+//        play.addPosition ( 2,2,Node.Brick.HUMAN );
+//        play.addPosition ( 2,3,Node.Brick.HUMAN );
+//        play.addPosition ( 2,4,Node.Brick.HUMAN );
+//        play.addPosition ( 1,1,Node.Brick.COMPUTER );
+//        play.addPosition ( 3,1,Node.Brick.COMPUTER );
+//
+//        //play.addPosition ( 3, 4, Node.Brick.COMPUTER  );
+//        play.addPosition ( 2,1,Node.Brick.COMPUTER );
+//
+//        b.printBoard ();
+//        System.out.println ( b.score () );
+//    }
+//
+//    private void testScore4 () {
+//        Board b = play.getBoard ();
+//        play.addPosition ( 2,2,Node.Brick.HUMAN );
+//        play.addPosition ( 2,3,Node.Brick.HUMAN );
+//        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
+//        play.addPosition ( 1,1,Node.Brick.COMPUTER );
+//        play.addPosition ( 3,1,Node.Brick.COMPUTER );
+//        b.hasPlayerWon ( Node.Brick.HUMAN.value );
+//        b.printBoard ();
+//        long start = System.currentTimeMillis ();
+//        play.findComputerMove ();
+//        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+//        b.printBoard ();
+//        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
+//    }
+//
+//
+//    /**
+//     * Chooses win before save
+//     */
+//    private void testScore5 () {
+//        Board b = play.getBoard ();
+//        play.addPosition ( 2,2,Node.Brick.HUMAN );
+//        play.addPosition ( 2,3,Node.Brick.HUMAN );
+//        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
+//        play.addPosition ( 1,2,Node.Brick.COMPUTER );
+//        play.addPosition ( 1,3,Node.Brick.COMPUTER );
+//        b.hasPlayerWon ( Node.Brick.HUMAN.value );
+//        //b.printBoard ();
+//        //long start = System.currentTimeMillis ();
+//        play.findComputerMove ();
+//        //System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+//        b.printBoard ();
+//        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.COMPUTER.value ) );
+//    }
+//
+//    /**
+//     * For playfield 4*4 with MAXDEPTH of 3 with 3 in a row to win
+//     */
+//    private void testScore6 () {
+//        Board b = play.getBoard ();
+//        play.addPosition ( 2,2,Node.Brick.HUMAN );
+//        play.addPosition ( 2,3,Node.Brick.HUMAN );
+//        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
+//        play.addPosition ( 1,1,Node.Brick.COMPUTER );
+//        play.addPosition ( 3,1,Node.Brick.COMPUTER );
+//        b.hasPlayerWon ( Node.Brick.HUMAN.value );
+//        //b.printBoard ();
+//        long start = System.currentTimeMillis ();
+//        play.findComputerMove ();
+//        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+//        b.printBoard ();
+//        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.COMPUTER.value ) );
+//    }
+//
+//    /**
+//     * for 6*6
+//     */
+//    private void testScore7 () {
+//        Board b = play.getBoard ();
+//        play.addPosition ( 2,2,Node.Brick.HUMAN );
+//        play.addPosition ( 2,3,Node.Brick.HUMAN );
+//        play.addPosition ( 2,4,Node.Brick.HUMAN );
+//        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
+//        play.addPosition ( 1,1,Node.Brick.COMPUTER );
+//        play.addPosition ( 2,1,Node.Brick.COMPUTER );
+//        play.addPosition ( 3,1,Node.Brick.COMPUTER );
+//        b.hasPlayerWon ( Node.Brick.HUMAN.value );
+//        long start = System.currentTimeMillis ();
+//        play.findComputerMove ();
+//        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+//        b.printBoard ();
+//        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
+//    }
+//
+//    /**
+//     * for 6*6
+//     * equal playing field gives the same score!
+//     */
+//    private void testScore8 () {
+//        Board b = play.getBoard ();
+//        play.addPosition ( 2,2,Node.Brick.HUMAN );
+//        play.addPosition ( 2,3,Node.Brick.HUMAN );
+//        play.addPosition ( 2,4,Node.Brick.HUMAN );
 //        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
 //        play.addPosition ( 4,2,Node.Brick.COMPUTER );
 //        play.addPosition ( 4,3,Node.Brick.COMPUTER );
 //        play.addPosition ( 4,4,Node.Brick.COMPUTER );
-        //play.addPosition ( 4, 1, Node.Brick.COMPUTER  );
-        long start = System.currentTimeMillis ();
-        // play.findComputerMove ();
-        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
-        b.printBoard ();
-        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
-    }
-
-    private void testScore12 () {   //ADD NEW NEIGHBOURS hopefully a lot faster
-        Board b = play.getBoard ();
-        play.addPosition ( 2,1,Node.Brick.HUMAN );
-        play.addPosition ( 2,2,Node.Brick.HUMAN );
-        play.addPosition ( 2,3,Node.Brick.HUMAN );
-        play.addPosition ( 2,4,Node.Brick.HUMAN );
-        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
-        play.addPosition ( 4,1,Node.Brick.COMPUTER );
-        play.addPosition ( 4,2,Node.Brick.COMPUTER );
-        play.addPosition ( 4,3,Node.Brick.COMPUTER );
-        play.addPosition ( 4, 4, Node.Brick.COMPUTER  );
-        long start = System.currentTimeMillis ();
-        play.findComputerMove ();
-        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
-        b.printBoard ();
-        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
-    }
-    private void testScore13 () {   //ADD NEW NEIGHBOURS hopefully a lot faster
-        Board b = play.getBoard ();
-        play.addPosition ( 2,0,Node.Brick.HUMAN );
-        play.addPosition ( 2,1,Node.Brick.HUMAN );
-        play.addPosition ( 2,2,Node.Brick.HUMAN );
-        play.addPosition ( 2,3,Node.Brick.HUMAN );
-        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
-        play.addPosition ( 4,0,Node.Brick.COMPUTER );
-        play.addPosition ( 4,1,Node.Brick.COMPUTER );
-        play.addPosition ( 4,2,Node.Brick.COMPUTER );
-        play.addPosition ( 4, 3, Node.Brick.COMPUTER  );
-        long start = System.currentTimeMillis ();
-        play.findComputerMove ();
-        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
-        b.printBoard ();
-        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
-    }
-
-    /**
-     * for 6*6
-     * equal playing field gives the same score!
-     */
-    private void testScoreAIChoice10 () {
-        Board b = play.getBoard ();
-        play.addPosition ( 2,2,Node.Brick.HUMAN );
-        play.addPosition ( 2,3,Node.Brick.HUMAN );
-        play.addPosition ( 2,4,Node.Brick.HUMAN );
-        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
-        play.addPosition ( 4,2,Node.Brick.COMPUTER );
-        play.addPosition ( 4,3,Node.Brick.COMPUTER );
-        play.addPosition ( 4,4,Node.Brick.COMPUTER );
-        b.hasPlayerWon ( Node.Brick.HUMAN.value );
-        long start = System.currentTimeMillis ();
-        play.findComputerMove ();
-        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
-        b.printBoard ();
-        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.COMPUTER.value ) );
-    }
-
-    private void testScore11 () {   //ADD NEW NEIGHBOURS hopefully a lot faster
-        Board b = play.getBoard ();
-        play.addPosition ( 2,1,Node.Brick.HUMAN );
-        play.addPosition ( 2,2,Node.Brick.HUMAN );
-        play.addPosition ( 2,3,Node.Brick.HUMAN );
-        play.addPosition ( 2,4,Node.Brick.HUMAN );
-        play.addPosition ( 2, 1, Node.Brick.HUMAN );
-        play.addPosition ( 4, 1, Node.Brick.COMPUTER  );
-        //play.addPosition ( 4,2,Node.Brick.COMPUTER );
-        play.addPosition ( 4,3,Node.Brick.COMPUTER );
-        play.addPosition ( 4,4,Node.Brick.COMPUTER );
-
-        long start = System.currentTimeMillis ();
-        // play.findComputerMove ();
-        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
-        b.printBoard ();
-        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
-    }
-
-    private void testAITime () {   //ADD NEW NEIGHBOURS hopefully a lot faster
-        Board b = play.getBoard ();
-        play.addPosition ( 1,3,Node.Brick.HUMAN );
-        play.addPosition ( 2,4,Node.Brick.HUMAN );
-        play.addPosition ( 3,5,Node.Brick.HUMAN );
-        play.addPosition ( 4,6,Node.Brick.HUMAN );
-        play.addPosition ( 3,1,Node.Brick.COMPUTER  );
-        play.addPosition ( 4,2,Node.Brick.COMPUTER );
-        play.addPosition ( 5,3,Node.Brick.COMPUTER );
-        play.addPosition ( 6,4,Node.Brick.COMPUTER );
-        long start = System.currentTimeMillis ();
-        play.findComputerMove ();
-        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
-        b.printBoard ();
-        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
-    }
-
-    private void testScoreAIChoice11 () {
-        Board b = play.getBoard ();
-        play.addPosition ( 2,2,Node.Brick.HUMAN );
-        play.addPosition ( 2,3,Node.Brick.HUMAN );
-        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
-        play.addPosition ( 4,2,Node.Brick.COMPUTER );
-        play.addPosition ( 4,3,Node.Brick.COMPUTER );
-        b.hasPlayerWon ( Node.Brick.HUMAN.value );
-        long start = System.currentTimeMillis ();
-        play.findComputerMove ();
-        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
-        b.printBoard ();
-        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.COMPUTER.value ) );
-    }
-
-    private void testComAi1 () {
-        Board b = play.getBoard ();
-        int x = 1;
-        play.addPosition ( 2,2,Node.Brick.HUMAN );
-        play.addPosition ( 2,3,Node.Brick.HUMAN );
-        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
-        play.addPosition ( 1,1,Node.Brick.COMPUTER );
-        play.addPosition ( 3,1,Node.Brick.COMPUTER );
-        b.printBoard ();
-        long start = System.currentTimeMillis ();
-        play.findComputerMove ();
-        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
-        int i = b.score ();
-        System.out.println ( i );
-    }
+//        b.hasPlayerWon ( Node.Brick.HUMAN.value );
+//        long start = System.currentTimeMillis ();
+//        // play.findComputerMove ();
+//        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+//        b.printBoard ();
+//        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.COMPUTER.value ) );
+//    }
+//
+//    /**
+//     * for 6*6
+//     * equal playing field gives the same score!
+//     */
+//    private void testScore9 () {
+//        Board b = play.getBoard ();
+//        play.addPosition ( 2,1,Node.Brick.HUMAN );
+//        play.addPosition ( 2,2,Node.Brick.HUMAN );
+//        play.addPosition ( 2,3,Node.Brick.HUMAN );
+//        play.addPosition ( 2,4,Node.Brick.HUMAN );
+//        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
+//        play.addPosition ( 4,2,Node.Brick.COMPUTER );
+//        play.addPosition ( 4,3,Node.Brick.COMPUTER );
+//        play.addPosition ( 4,4,Node.Brick.COMPUTER );
+//        //play.addPosition ( 4, 1, Node.Brick.COMPUTER  );
+//        b.hasPlayerWon ( Node.Brick.HUMAN.value );
+//        long start = System.currentTimeMillis ();
+//        // play.findComputerMove ();
+//        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+//        b.printBoard ();
+//        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
+//    }
+//
+//    private void testScore10 () {   //ADD NEW NEIGHBOURS hopefully a lot faster
+//        Board b = play.getBoard ();
+//        play.addPosition ( 2,1,Node.Brick.HUMAN );
+//        play.addPosition ( 2,2,Node.Brick.HUMAN );
+//        play.addPosition ( 2,3,Node.Brick.HUMAN );
+//        play.addPosition ( 2,4,Node.Brick.HUMAN );
+////        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
+////        play.addPosition ( 4,2,Node.Brick.COMPUTER );
+////        play.addPosition ( 4,3,Node.Brick.COMPUTER );
+////        play.addPosition ( 4,4,Node.Brick.COMPUTER );
+//        //play.addPosition ( 4, 1, Node.Brick.COMPUTER  );
+//        long start = System.currentTimeMillis ();
+//        // play.findComputerMove ();
+//        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+//        b.printBoard ();
+//        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
+//    }
+//
+//    private void testScore12 () {   //ADD NEW NEIGHBOURS hopefully a lot faster
+//        Board b = play.getBoard ();
+//        play.addPosition ( 2,1,Node.Brick.HUMAN );
+//        play.addPosition ( 2,2,Node.Brick.HUMAN );
+//        play.addPosition ( 2,3,Node.Brick.HUMAN );
+//        play.addPosition ( 2,4,Node.Brick.HUMAN );
+//        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
+//        play.addPosition ( 4,1,Node.Brick.COMPUTER );
+//        play.addPosition ( 4,2,Node.Brick.COMPUTER );
+//        play.addPosition ( 4,3,Node.Brick.COMPUTER );
+//        play.addPosition ( 4, 4, Node.Brick.COMPUTER  );
+//        long start = System.currentTimeMillis ();
+//        play.findComputerMove ();
+//        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+//        b.printBoard ();
+//        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
+//    }
+//    private void testScore13 () {   //ADD NEW NEIGHBOURS hopefully a lot faster
+//        Board b = play.getBoard ();
+//        play.addPosition ( 2,0,Node.Brick.HUMAN );
+//        play.addPosition ( 2,1,Node.Brick.HUMAN );
+//        play.addPosition ( 2,2,Node.Brick.HUMAN );
+//        play.addPosition ( 2,3,Node.Brick.HUMAN );
+//        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
+//        play.addPosition ( 4,0,Node.Brick.COMPUTER );
+//        play.addPosition ( 4,1,Node.Brick.COMPUTER );
+//        play.addPosition ( 4,2,Node.Brick.COMPUTER );
+//        play.addPosition ( 4, 3, Node.Brick.COMPUTER  );
+//        long start = System.currentTimeMillis ();
+//        play.findComputerMove ();
+//        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+//        b.printBoard ();
+//        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
+//    }
+//
+//    /**
+//     * for 6*6
+//     * equal playing field gives the same score!
+//     */
+//    private void testScoreAIChoice10 () {
+//        Board b = play.getBoard ();
+//        play.addPosition ( 2,2,Node.Brick.HUMAN );
+//        play.addPosition ( 2,3,Node.Brick.HUMAN );
+//        play.addPosition ( 2,4,Node.Brick.HUMAN );
+//        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
+//        play.addPosition ( 4,2,Node.Brick.COMPUTER );
+//        play.addPosition ( 4,3,Node.Brick.COMPUTER );
+//        play.addPosition ( 4,4,Node.Brick.COMPUTER );
+//        b.hasPlayerWon ( Node.Brick.HUMAN.value );
+//        long start = System.currentTimeMillis ();
+//        play.findComputerMove ();
+//        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+//        b.printBoard ();
+//        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.COMPUTER.value ) );
+//    }
+//
+//    private void testScore11 () {   //ADD NEW NEIGHBOURS hopefully a lot faster
+//        Board b = play.getBoard ();
+//        play.addPosition ( 2,1,Node.Brick.HUMAN );
+//        play.addPosition ( 2,2,Node.Brick.HUMAN );
+//        play.addPosition ( 2,3,Node.Brick.HUMAN );
+//        play.addPosition ( 2,4,Node.Brick.HUMAN );
+//        play.addPosition ( 2, 1, Node.Brick.HUMAN );
+//        play.addPosition ( 4, 1, Node.Brick.COMPUTER  );
+//        //play.addPosition ( 4,2,Node.Brick.COMPUTER );
+//        play.addPosition ( 4,3,Node.Brick.COMPUTER );
+//        play.addPosition ( 4,4,Node.Brick.COMPUTER );
+//
+//        long start = System.currentTimeMillis ();
+//        // play.findComputerMove ();
+//        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+//        b.printBoard ();
+//        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
+//    }
+//
+//    private void testAITime () {   //ADD NEW NEIGHBOURS hopefully a lot faster
+//        Board b = play.getBoard ();
+//        play.addPosition ( 1,3,Node.Brick.HUMAN );
+//        play.addPosition ( 2,4,Node.Brick.HUMAN );
+//        play.addPosition ( 3,5,Node.Brick.HUMAN );
+//        play.addPosition ( 4,6,Node.Brick.HUMAN );
+//        play.addPosition ( 3,1,Node.Brick.COMPUTER  );
+//        play.addPosition ( 4,2,Node.Brick.COMPUTER );
+//        play.addPosition ( 5,3,Node.Brick.COMPUTER );
+//        play.addPosition ( 6,4,Node.Brick.COMPUTER );
+//        long start = System.currentTimeMillis ();
+//        play.findComputerMove ();
+//        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+//        b.printBoard ();
+//        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
+//    }
+//
+//    private void testScoreAIChoice11 () {
+//        Board b = play.getBoard ();
+//        play.addPosition ( 2,2,Node.Brick.HUMAN );
+//        play.addPosition ( 2,3,Node.Brick.HUMAN );
+//        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
+//        play.addPosition ( 4,2,Node.Brick.COMPUTER );
+//        play.addPosition ( 4,3,Node.Brick.COMPUTER );
+//        b.hasPlayerWon ( Node.Brick.HUMAN.value );
+//        long start = System.currentTimeMillis ();
+//        play.findComputerMove ();
+//        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+//        b.printBoard ();
+//        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.COMPUTER.value ) );
+//    }
+//
+//    private void testComAi1 () {
+//        Board b = play.getBoard ();
+//        int x = 1;
+//        play.addPosition ( 2,2,Node.Brick.HUMAN );
+//        play.addPosition ( 2,3,Node.Brick.HUMAN );
+//        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
+//        play.addPosition ( 1,1,Node.Brick.COMPUTER );
+//        play.addPosition ( 3,1,Node.Brick.COMPUTER );
+//        b.printBoard ();
+//        long start = System.currentTimeMillis ();
+//        play.findComputerMove ();
+//        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+//        int i = b.score ();
+//        System.out.println ( i );
+//    }
 
 }

@@ -17,6 +17,14 @@ public class Score {
         inARowToWin = b.getStreakToWin ();
     }
 
+    protected int calcWinScore () {
+        int score = 1000;
+        for (int i = 0; i < inARowToWin; i++) {
+            score *= 10;
+        }
+        return score * inARowToWin;
+    }
+
     public int getScore (String player) {
         int score = 1;
         int count;
