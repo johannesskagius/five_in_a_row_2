@@ -1,4 +1,4 @@
-//  @author josk3261 Johannes Skagius
+//  author josk3261 Johannes Skagius
 // Stockholms university
 // Kurs: ALDA - algoritmer och datastrukturer
 package com.company;
@@ -34,6 +34,7 @@ public class Main {
          */
         //m.testScore11 ();
         //m.testScore12 ();
+        //m.testScore13 ();
         //m.testAITime ();
 
         //m.testScoreVS2();
@@ -266,6 +267,23 @@ public class Main {
         play.addPosition ( 4,2,Node.Brick.COMPUTER );
         play.addPosition ( 4,3,Node.Brick.COMPUTER );
         play.addPosition ( 4, 4, Node.Brick.COMPUTER  );
+        long start = System.currentTimeMillis ();
+        play.findComputerMove ();
+        System.out.println ( (System.currentTimeMillis () - start) + "ms" );
+        b.printBoard ();
+        System.out.println ( b.score () + " " + b.hasPlayerWon ( Node.Brick.HUMAN.value ) );
+    }
+    private void testScore13 () {   //ADD NEW NEIGHBOURS hopefully a lot faster
+        Board b = play.getBoard ();
+        play.addPosition ( 2,0,Node.Brick.HUMAN );
+        play.addPosition ( 2,1,Node.Brick.HUMAN );
+        play.addPosition ( 2,2,Node.Brick.HUMAN );
+        play.addPosition ( 2,3,Node.Brick.HUMAN );
+        // play.addPosition ( 2, 1, Node.Brick.HUMAN );
+        play.addPosition ( 4,0,Node.Brick.COMPUTER );
+        play.addPosition ( 4,1,Node.Brick.COMPUTER );
+        play.addPosition ( 4,2,Node.Brick.COMPUTER );
+        play.addPosition ( 4, 3, Node.Brick.COMPUTER  );
         long start = System.currentTimeMillis ();
         play.findComputerMove ();
         System.out.println ( (System.currentTimeMillis () - start) + "ms" );

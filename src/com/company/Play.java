@@ -65,6 +65,10 @@ public class Play {
     }
 
     /**
+     * Evalutes and finds the computers next move
+     *
+     * Min max algorithm
+     *
      *
      * @param depth
      * @param alfa

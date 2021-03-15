@@ -1,4 +1,4 @@
-//  @author josk3261 Johannes Skagius
+//  author josk3261 Johannes Skagius
 // Stockholms university
 // Kurs: ALDA - algoritmer och datastrukturer
 

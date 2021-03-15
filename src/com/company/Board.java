@@ -1,4 +1,4 @@
-//  @author josk3261 Johannes Skagius
+//  author josk3261 Johannes Skagius
 // Stockholms university
 // Kurs: ALDA - algoritmer och datastrukturer
 package com.company;
@@ -7,10 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    private Score score;
-    private int PLAYFIELDSIZE = 6;
+    private final int PLAYFIELDSIZE;// = 6;
     private boolean isGameOver = false;
-    private int streakToWin = 5;//PLAYFIELDSIZE - 1;/// 2;
+    private int streakToWin;// = 5;//PLAYFIELDSIZE - 1;/// 2;
     private Node[][] playField;
     private List<Coordinate> playedPositions = new ArrayList<> ();
     private boolean hasHumanWon;
@@ -23,7 +22,6 @@ public class Board {
         this.PLAYFIELDSIZE = playFieldSize;
         playField = new Node[playFieldSize][playFieldSize];
         addPlayField ();
-        score = new Score ( this );
     }
 
     public void addPlay (int x,int y,Node.Brick s) {
@@ -48,7 +46,7 @@ public class Board {
 
     public void removePlay (int x,int y) {
         playField[y][x].setStatus ( Node.Brick.NOTPLAYED );
-        Coordinate l = new Coordinate ( x,y );
+        Coordinate l = new Coordinate ( y,x );
         playedPositions.remove ( l );
     }
 
@@ -239,6 +237,7 @@ public class Board {
     }
 
     public int score () {
+        Score score = new Score ( this);
         int human = score.getScore ( Node.Brick.HUMAN.value );
         int computer = score.getScore ( Node.Brick.COMPUTER.value );
         return computer - human;
